@@ -1,0 +1,65 @@
+= Bicho
+
+* http://github.com/dmacvicar/bicho
+
+== Introduction
+
+Library to access bugzilla and command line tool.
+
+Its main goal is to be clean and provide a command line tool
+that exposes its features.
+
+== Features
+
+Main use case is report generation, therefore only the following
+features are implemented right now:
+
+* get a bug
+* search bugs
+
+Plugins can be written to deal with specific bugzilla installations.
+
+== Example (API)
+
+    require 'bicho/client'
+
+    server = Bicho::Client.new('http://bugzilla.gnome.org')
+    server.get(127043).each do |bug|
+      puts bug.summary
+      puts bug.url
+    end
+
+== Example (CLI)
+
+    bicho -b http://bugzilla.gnome.org show 127043
+
+    bicho -b https://bugzilla.gnome.org search --summary "crash"
+
+    bicho -b https://bugzilla.gnome.org search --help
+
+== Extending Bicho
+
+=== Commands
+
+See the +Command+ class to implement more commands.
+
+== Known issues
+
+* For now bugs respond to the bugs attributtes described in
+http://www.bugzilla.org/docs/tip/en/html/api/Bugzilla/WebService/Bug.html, I intend to make those real attributes.
+* There is no check if an API is supported on the server side
+
+== Roadmap
+
+* Define the plugin hooks, right now there is one :-)
+* Shortcuts for the bugzilla URL (bicho -b bko search ..), a plugin?
+
+== Authors
+
+* Duncan Mac-Vicar P. <dmacvicar@suse.de>
+
+== License
+
+Copyright (c) 2011 SUSE LINUX Products GmbH.
+
+Bicho is licensed under the MIT license. See MIT-LICENSE for details.
