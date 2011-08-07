@@ -12,6 +12,12 @@ module Bicho
       @data[name.to_s]
     end
 
+    def id
+      # we define id to not get the deprecated
+      # warning of object_id
+      @data['id']
+    end
+
     def to_s
       "##{id} - #{summary} (#{url})"
     end
