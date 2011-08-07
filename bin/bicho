@@ -74,7 +74,7 @@ ret = 0
 begin
   # create subcommands automatically from the available
   # symbols in BzConsole module
-  SUB_COMMANDS = Bicho::CLI::Commands.constants.sort.map {|x| (k = eval("Bicho::CLI::Commands::#{x}")).class == Class && x != "Command" ? x.downcase : nil}
+  SUB_COMMANDS = Bicho::CLI::Commands.constants.sort.map(&:downcase)
 
   global_opts = Trollop::options do
     banner <<-EOS
@@ -85,13 +85,13 @@ EOS
     opt :config, "Read FILE as configuration file.", :type => :io
     opt :debug, "Show debug messages", :default => false
     opt :bugzilla, "Bugzilla URL or alias", :default => 'bnz'
-    stop_on SUB_COMMANDS.collect(&:to_s)
+    stop_on SUB_COMMANDS
   end
 
   $logger.level = Logger::DEBUG if global_opts[:debug]
 
   # get the subcommand
-  cmd = ARGV.shift.to_sym rescue nil
+  cmd = ARGV.shift rescue nil
 
   if (!cmd || !SUB_COMMANDS.include?(cmd))
     Trollop.die "available subcommands: #{SUB_COMMANDS.join(" ")}"
