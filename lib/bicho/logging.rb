@@ -22,26 +22,22 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
+require 'logger'
+require 'bicho/ext/logger_colors'
 
-require 'bicho/cli/command'
-require 'bicho/client'
+module Bicho
+  module Logging
 
-module Bicho::CLI::Commands
-  class Show < ::Bicho::CLI::Command
-    options do
-      opt :monkey, "Use monkey mode", :default => true
-      opt :text, "Name", :type => :string
+    def self.logger=(logger)
+      @logger = logger
     end
 
-    def do(global_opts, opts, args)
-      client = ::Bicho::Client.new(global_opts[:bugzilla])
-      begin
-        client.get_bugs(*args).each do |bug|
-          puts bug
-        end
-      rescue XMLRPC::FaultException => e
-        puts e.message
-      end
+    def self.logger
+      @logger ||= Logger.new('/dev/null')
+    end
+
+    def logger
+      Logging.logger
     end
 
   end

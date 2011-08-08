@@ -23,9 +23,9 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 require 'inifile'
-require 'logger'
 require 'uri'
 require 'xmlrpc/client'
+require 'bicho'
 require 'bicho/bug'
 
 module Bicho
@@ -36,21 +36,21 @@ module Bicho
   # Client to query bugzilla
   class Client
 
+    include Bicho::Logging
+
     attr_reader :url
 
-    def initialize(url, logger = Logger.new('/dev/null'))
+    def initialize(url)
       url = URI.parse(url) if not url.is_a?(URI)
       # save the unmodified (by plugins) url
       @url = url.clone
 
       url.path = '/xmlrpc.cgi'
 
-      @logger = logger
-
       # Scan plugins
       plugin_glob = File.join(File.dirname(__FILE__), 'plugins', '*.rb')
       Dir.glob(plugin_glob).each do |plugin|
-        @logger.debug("Loading file: #{plugin}")
+        logger.debug("Loading file: #{plugin}")
         load plugin
       end
 
@@ -58,7 +58,7 @@ module Bicho
       ::Bicho::Plugins.constants.each do |cnt|
         pl_class = ::Bicho::Plugins.const_get(cnt)
         pl_instance = pl_class.new
-        @logger.debug("Loaded: #{pl_instance}")
+        logger.debug("Loaded: #{pl_instance}")
         pl_instance.initialize_hook(url, logger)
       end
 
@@ -69,7 +69,7 @@ module Bicho
     def handle_faults(ret)
       if ret.has_key?('faults')
         ret['faults'].each do |fault|
-          @logger.error fault
+          logger.error fault
         end
       end
     end

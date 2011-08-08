@@ -56,17 +56,14 @@ module Bicho
     #
     class Command
 
+      include ::Bicho::Logging
+
       class << self; attr_accessor :parser end
 
       attr_accessor :t
 
-      def initialize(logger)
-        @logger = logger
+      def initialize
         @t = HighLine.new
-      end
-
-      def logger
-        @logger
       end
 
       # Gateway to Trollop

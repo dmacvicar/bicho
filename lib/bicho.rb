@@ -23,9 +23,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 require 'rubygems'
+require 'logger'
 require 'bicho/version'
+require 'bicho/logging'
 require 'bicho/client'
-require 'bicho/ext/logger_colors'
 
 module Bicho
 

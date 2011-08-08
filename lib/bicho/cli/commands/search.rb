@@ -39,7 +39,7 @@ module Bicho::CLI::Commands
     end
 
     def do(global_opts, opts, args)
-      server = ::Bicho::Client.new(global_opts[:bugzilla], logger)
+      server = ::Bicho::Client.new(global_opts[:bugzilla])
       # for most parameter we accept arrays, and also multi mode
       # this means parameters come in arrays of arrays
       query = ::Bicho::Query.new

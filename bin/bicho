@@ -47,26 +47,22 @@ end
 
 # Setup a logger and connect it with stupid libraries
 # that can't use a logger
-$logger = Logger.new(STDERR)
+Bicho::Logging.logger = Logger.new(STDERR)
 # Don't show by default anything
-$logger.level = Logger::FATAL
+Bicho::Logging.logger.level = Logger::FATAL
 
 # Helper IO device that forwards to the logger, we use it
 # to debug XMLRPC by monkey patching it
 class Bicho::LoggerIODevice
-  def initialize(logger)
-    @logger = logger
-  end
-
   def <<(msg)
-    @logger.debug(msg)
+    Bicho::Logging.logger.debug(msg)
   end
 end
 
 # monkey patch XMLRPC
 class XMLRPC::Client
   def set_debug
-    @http.set_debug_output(Bicho::LoggerIODevice.new($logger));
+    @http.set_debug_output(Bicho::LoggerIODevice.new);
   end
 end
 
@@ -88,7 +84,7 @@ EOS
     stop_on SUB_COMMANDS
   end
 
-  $logger.level = Logger::DEBUG if global_opts[:debug]
+  Bicho::Logging.logger.level = Logger::DEBUG if global_opts[:debug]
 
   # get the subcommand
   cmd = ARGV.shift rescue nil
@@ -100,12 +96,12 @@ EOS
   # Create an instance for the command
   mod = Bicho::CLI::Commands
   cmd_class = mod.const_get(cmd.capitalize)
-  cmd_instance = cmd_class.new($logger)
+  cmd_instance = cmd_class.new
   opts = cmd_instance.parse_options
 
   ret = cmd_instance.do(global_opts, opts, ARGV)
 rescue Exception => e
-  $logger.error e.message
+  Bicho::Logging.logger.error e.message
   t.say("#{t.color('ERROR: ', :error)} #{t.color(e.message, :bold)}")
   ret = 1
 end
