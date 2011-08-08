@@ -25,8 +25,25 @@
 require 'inifile'
 require 'uri'
 require 'xmlrpc/client'
-require 'bicho'
+
 require 'bicho/bug'
+require 'bicho/query'
+require 'bicho/logging'
+
+# Helper IO device that forwards to the logger, we use it
+# to debug XMLRPC by monkey patching it
+class Bicho::LoggerIODevice
+  def <<(msg)
+    Bicho::Logging.logger.debug(msg)
+  end
+end
+
+# monkey patch XMLRPC
+class XMLRPC::Client
+  def set_debug
+    @http.set_debug_output(Bicho::LoggerIODevice.new);
+  end
+end
 
 module Bicho
 

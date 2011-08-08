@@ -22,10 +22,23 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
+require 'bicho/common_client'
 
 module Bicho
 
   class Query
+
+    # Iterates through the result of the
+    # current query.
+    #
+    # Requires Bicho.client to be set
+    def each
+      ret = Bicho.client.search(self)
+      if block_given?
+        ret.each { |bug| yield bug }
+      end
+      return Enumerable::Enumerator.new(ret)
+    end
 
     # obtains the parameter that can be
     # passed to the XMLRPC API

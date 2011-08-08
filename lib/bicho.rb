@@ -27,6 +27,7 @@ require 'logger'
 require 'bicho/version'
 require 'bicho/logging'
 require 'bicho/client'
+require 'bicho/bug'
 
 module Bicho
 

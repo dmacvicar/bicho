@@ -2,8 +2,18 @@ $:.push(File.join(File.dirname(__FILE__), 'lib'))
 require 'bundler/gem_tasks'
 require 'bicho/version'
 require 'rake/rdoctask'
+require 'rake/testtask'
 
 extra_docs = ['README*', 'TODO*', 'CHANGELOG*']
+
+task :default => [:test]
+
+Rake::TestTask.new do |t|
+  t.libs << File.expand_path('../test', __FILE__)
+  t.libs << File.expand_path('../', __FILE__)
+  t.test_files = FileList['test/test*.rb']
+  t.verbose = true
+end
 
 begin
  require 'yard'

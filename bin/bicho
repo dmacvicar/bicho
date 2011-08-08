@@ -51,21 +51,6 @@ Bicho::Logging.logger = Logger.new(STDERR)
 # Don't show by default anything
 Bicho::Logging.logger.level = Logger::FATAL
 
-# Helper IO device that forwards to the logger, we use it
-# to debug XMLRPC by monkey patching it
-class Bicho::LoggerIODevice
-  def <<(msg)
-    Bicho::Logging.logger.debug(msg)
-  end
-end
-
-# monkey patch XMLRPC
-class XMLRPC::Client
-  def set_debug
-    @http.set_debug_output(Bicho::LoggerIODevice.new);
-  end
-end
-
 ret = 0
 begin
   # create subcommands automatically from the available

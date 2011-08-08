@@ -1,7 +1,12 @@
+require 'bicho/query'
 
 module Bicho
 
   class Bug
+
+    def self.query
+      return Query.new
+    end
 
     def initialize(client, data)
       @client = client
