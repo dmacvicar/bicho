@@ -74,7 +74,7 @@ ret = 0
 begin
   # create subcommands automatically from the available
   # symbols in BzConsole module
-  SUB_COMMANDS = Bicho::CLI::Commands.constants.sort.map(&:downcase)
+  SUB_COMMANDS = Bicho::CLI::Commands.constants.sort.map(&:to_s).map(&:downcase)
 
   global_opts = Trollop::options do
     banner <<-EOS
