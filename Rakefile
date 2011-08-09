@@ -1,7 +1,6 @@
 $:.push(File.join(File.dirname(__FILE__), 'lib'))
 require 'bundler/gem_tasks'
 require 'bicho/version'
-require 'rake/rdoctask'
 require 'rake/testtask'
 
 extra_docs = ['README*', 'TODO*', 'CHANGELOG*']
@@ -22,6 +21,7 @@ begin
   end
 rescue LoadError
   STDERR.puts "Install yard if you want prettier docs"
+  require 'rdoc/task'
   Rake::RDocTask.new(:doc) do |rdoc|
     rdoc.rdoc_dir = "doc"
     rdoc.title = "bicho #{Bicho::VERSION}"

@@ -26,12 +26,17 @@ require 'bicho/common_client'
 
 module Bicho
 
+  # Represents a bug search to the server and it can
+  # be configured with all bug attributes.
+  #
+  #
   class Query
 
-    # Iterates through the result of the
-    # current query.
+    # Iterates through the result of the current query.
     #
-    # Requires Bicho.client to be set
+    # @note Requires Bicho.client to be set
+    #
+    # @yield [Bicho::Bug]
     def each
       ret = Bicho.client.search(self)
       if block_given?
@@ -45,20 +50,19 @@ module Bicho
     attr_reader :query_map
 
     # Create a query.
-    # Optionally you can create a
-    # query from a hash containing
-    # the attributes:
     #
-    # m = {:summary => "substring", :assigned_to => "foo@bar.com"}
-    # q = Query.new(m)
+    # @example query from a hash containing the attributes:
+    #   q = Query.new({:summary => "substring", :assigned_to => "foo@bar.com"})
     #
-    # Or you can use the chainable methods:
-    # q = Query.new.assigned_to("foo@bar.com@).summary("some text")
+    # @example using chainable methods:
+    #   q = Query.new.assigned_to("foo@bar.com@).summary("some text")
     #
     def initialize(query_map={})
       @query_map = Hash.new
     end
 
+    # Query responds to all the bug search attributes.
+    # @see {Bug#where}
     def method_missing(name, *args)
       args.each do |arg|
         append_query(name.to_s, arg)
@@ -66,18 +70,19 @@ module Bicho
       self
     end
 
+    # Shortcut, equivalent to {:summary => "L3"}
     def L3
       append_query("summary", "L3")
       self
     end
 
     private
-    # Appends a query parameter.
-    # If the parameter already exists
-    # that parameter is converted to an
-    # array of values
+    # Appends a parameter to the query map
     #
-    # only used internally
+    # Only used internally.
+    #
+    # If the parameter already exists that parameter is converted to an
+    # array of values
     def append_query(param, value)
       if not @query_map.has_key?(param)
         @query_map[param] = Array.new
