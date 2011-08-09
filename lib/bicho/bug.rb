@@ -4,8 +4,16 @@ module Bicho
 
   class Bug
 
-    def self.query
-      return Query.new
+    # ActiveRecord like interface to search
+    # for bugs:
+    #
+    # Bug.where(:summary => "crash").each do |bug|
+    #   #...do something with bug
+    # end
+    #
+    # Requires Bicho.client to be set
+    def self.where(conditions={})
+      return Query.new(conditions)
     end
 
     def initialize(client, data)

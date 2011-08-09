@@ -21,12 +21,33 @@ Plugins can be written to deal with specific bugzilla installations.
 
 == Example (API)
 
-    require 'bicho/client'
+=== Client API
+
+    require 'bicho'
 
     server = Bicho::Client.new('http://bugzilla.gnome.org')
     server.get(127043).each do |bug|
       puts bug.summary
       puts bug.url
+    end
+
+=== ActiveRecord-like API
+
+To use the ActiveRecord like interface over the +Bug+ class, you need first
+to set the Bicho common client:
+
+    require 'bicho'
+
+    Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
+
+    Bicho::Bug.where(:product => "vala", :status => "resolved").each do |bug|
+      # .. do something with bug
+    end
+
+    Or alternatively:
+
+    Bicho::Bug.where.product("vala").status("resolved").each do |bug|
+      # .. do something with bug
     end
 
 == Example (CLI)
