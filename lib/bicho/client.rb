@@ -32,6 +32,8 @@ require 'bicho/logging'
 
 # Helper IO device that forwards to the logger, we use it
 # to debug XMLRPC by monkey patching it
+#
+# @private
 class Bicho::LoggerIODevice
   def <<(msg)
     Bicho::Logging.logger.debug(msg)
@@ -39,6 +41,8 @@ class Bicho::LoggerIODevice
 end
 
 # monkey patch XMLRPC
+#
+# @private
 class XMLRPC::Client
   def set_debug
     @http.set_debug_output(Bicho::LoggerIODevice.new);
