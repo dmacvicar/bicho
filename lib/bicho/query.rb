@@ -81,6 +81,8 @@ module Bicho
     #
     # If the parameter already exists that parameter is converted to an
     # array of values
+    #
+    # @private
     def append_query(param, value)
       if not @query_map.has_key?(param)
         @query_map[param] = Array.new
