@@ -69,6 +69,11 @@ module Bicho
       self
     end
 
+    # Shortcut equivalent to status new, assigned, needinfo and reopened
+    def open
+      status(:new).status(:assigned).status(:needinfo).status(:reopened)
+    end
+
     # Shortcut, equivalent to
     #   :summary => "L3"
     def L3
