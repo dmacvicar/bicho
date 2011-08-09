@@ -10,8 +10,6 @@ class Query_test < Test::Unit::TestCase
       end
     end
 
-    #Bicho::Logging.logger = Logger.new(STDERR)
-    #Bicho::Logging.logger.level = Logger::DEBUG
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
 
     ret  = Bicho::Bug.where.product("vala").status("resolved").component("Basic Types").each.to_a
