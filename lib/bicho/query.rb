@@ -60,7 +60,8 @@ module Bicho
     end
 
     # Query responds to all the bug search attributes.
-    # @see {Bug#where}
+    #
+    # @see {Bug.where Allowed attributes}
     def method_missing(name, *args)
       args.each do |arg|
         append_query(name.to_s, arg)
@@ -68,7 +69,8 @@ module Bicho
       self
     end
 
-    # Shortcut, equivalent to {:summary => "L3"}
+    # Shortcut, equivalent to
+    #   :summary => "L3"
     def L3
       append_query("summary", "L3")
       self
