@@ -55,8 +55,8 @@ module Bicho
     # @example using chainable methods:
     #   q = Query.new.assigned_to("foo@bar.com@).summary("some text")
     #
-    def initialize(query_map={})
-      @query_map = Hash.new
+    def initialize(conditions={})
+      @query_map = conditions
     end
 
     # Query responds to all the bug search attributes.
