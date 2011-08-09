@@ -52,7 +52,7 @@ module Bicho::CLI::Commands
         end
       end
 
-      server.search(query).each do |bug|
+      server.search_bugs(query).each do |bug|
         t.say("#{t.color(bug.id, :headline)} #{bug.summary}")
       end
       return 0

@@ -38,12 +38,10 @@ module Bicho
     #
     # @yield [Bicho::Bug]
     def each
-      ret = Bicho.client.search(self)
-      if block_given?
-        ret.each { |bug| yield bug }
-      end
-      return Enumerable::Enumerator.new(ret)
-    end
+      ret = Bicho.client.search_bugs(self)
+      return ret.each if not block_given?
+      ret.each { |bug| yield bug }
+     end
 
     # obtains the parameter that can be
     # passed to the XMLRPC API

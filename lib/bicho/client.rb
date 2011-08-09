@@ -97,7 +97,7 @@ module Bicho
     # a +String+ that will be searched in the summary
     # of the bugs.
     #
-    def search(query)
+    def search_bugs(query)
       # allow plain strings to be passed, interpretting them
       query = Query.new.summary(query) if query.is_a?(String)
 
@@ -111,7 +111,7 @@ module Bicho
     end
 
     # Retrieves one or more bugs by id
-    def get(*ids)
+    def get_bugs(*ids)
       params = Hash.new
       params[:ids] = ids.collect(&:to_s)
 

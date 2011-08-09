@@ -29,19 +29,14 @@ require 'bicho/client'
 module Bicho::CLI::Commands
   class Show < ::Bicho::CLI::Command
     options do
-      opt :monkey, "Use monkey mode", :default => true
-      opt :text, "Name", :type => :string
     end
 
     def do(global_opts, opts, args)
       client = ::Bicho::Client.new(global_opts[:bugzilla])
-      begin
-        client.get_bugs(*args).each do |bug|
-          puts bug
-        end
-      rescue XMLRPC::FaultException => e
-        puts e.message
+      client.get_bugs(*args).each do |bug|
+        t.say("#{t.color(bug.id, :headline)} #{bug.summary}")
       end
+      return 0
     end
 
   end

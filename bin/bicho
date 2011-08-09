@@ -87,6 +87,7 @@ EOS
   ret = cmd_instance.do(global_opts, opts, ARGV)
 rescue Exception => e
   Bicho::Logging.logger.error e.message
+  Bicho::Logging.logger.error e.backtrace
   t.say("#{t.color('ERROR: ', :error)} #{t.color(e.message, :bold)}")
   ret = 1
 end

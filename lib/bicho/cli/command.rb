@@ -80,6 +80,7 @@ module Bicho
       # Called by the cli to get the options
       # with current ARGV
       def parse_options
+        self.class.parser = Trollop::Parser.new if not self.class.parser
         opts = Trollop::with_standard_exception_handling(self.class.parser) do
           o = self.class.parser.parse ARGV
         end
