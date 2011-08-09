@@ -43,8 +43,8 @@ module Bicho
       ret.each { |bug| yield bug }
      end
 
-    # obtains the parameter that can be
-    # passed to the XMLRPC API
+    # obtains the parameter that can be passed to the XMLRPC API
+    # @private
     attr_reader :query_map
 
     # Create a query.
