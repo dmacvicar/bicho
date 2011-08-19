@@ -94,7 +94,7 @@ module Bicho
       if not @query_map.has_key?(param)
         @query_map[param] = Array.new
       end
-      @query_map[param] = value
+      @query_map[param] = [@query_map[param], value].flatten
     end
 
   end
