@@ -59,7 +59,7 @@ module Bicho
 
     include Bicho::Logging
 
-    attr_reader :url
+    attr_reader :url, :cookie, :userid
 
     def initialize(url)
       url = URI.parse(url) if not url.is_a?(URI)
@@ -85,6 +85,10 @@ module Bicho
 
       @client = XMLRPC::Client.new_from_uri(url.to_s, nil, 900)
       @client.set_debug
+      # User.login sets the credentials cookie for subsequent calls
+      ret = @client.call("User.login", { 'login' => @client.user, 'password' => @client.password, 'remember' => 0 } )
+      handle_faults(ret)
+      @userid = ret['id']
     end
 
     def handle_faults(ret)
