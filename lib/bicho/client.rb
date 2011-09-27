@@ -59,7 +59,7 @@ module Bicho
 
     include Bicho::Logging
 
-    attr_reader :url, :cookie, :userid
+    attr_reader :url, :userid
 
     def initialize(url)
       url = URI.parse(url) if not url.is_a?(URI)
@@ -89,6 +89,10 @@ module Bicho
       ret = @client.call("User.login", { 'login' => @client.user, 'password' => @client.password, 'remember' => 0 } )
       handle_faults(ret)
       @userid = ret['id']
+    end
+
+    def cookie
+      @client.cookie
     end
 
     def handle_faults(ret)
