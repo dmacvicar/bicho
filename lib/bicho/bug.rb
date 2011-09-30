@@ -71,6 +71,12 @@ module Bicho
       "##{id} - #{summary} (#{url})"
     end
 
+    def [] name, subname = nil
+      v = @data[name.to_s]
+      v = v[subname.to_s] if subname # for 'internals' properties
+      v
+    end
+
     # URL where the bug can be viewed
     # Example: http://bugs.foo.com/2345
     def url
