@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Bicho::VERSION
   s.authors     = ["Duncan Mac-Vicar P."]
   s.email       = ["dmacvicar@suse.de"]
-  s.homepage    = "http//github.com/dmacvicar/bicho"
+  s.homepage    = "http://github.com/dmacvicar/bicho"
   s.summary     = %q{Library to access bugzilla}
   s.description = %q{Library to access bugzilla}
 
