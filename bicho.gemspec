@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.add_dependency("inifile", ["~> 0.4.1"])
   s.add_dependency("trollop", [">= 1.16"])
   s.add_dependency("highline", ["~> 1.6.2"])
+  s.add_dependency("nokogiri")
 
 
   s.rubyforge_project = "bicho"

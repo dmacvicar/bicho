@@ -25,6 +25,8 @@
 require 'inifile'
 require 'uri'
 require 'xmlrpc/client'
+require 'nokogiri'
+require 'net/https'
 
 require 'bicho/bug'
 require 'bicho/query'
@@ -129,10 +131,47 @@ module Bicho
       bugs
     end
 
+    # Given a named query's name, runs it
+    # on the server
+    # @returns [Array<String>] list of bugs
+    def expand_named_query(what)
+      if not @userid
+        raise "You need to be authenticated to use named queries"
+      end
+
+      logger.info("Expanding named query: '#{what}' with '#{cookie}'")
+      http = Net::HTTP.new(@url.host, @url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.set_debug_output(Bicho::LoggerIODevice.new)
+      request = Net::HTTP::Get.new("/buglist.cgi?cmdtype=runnamed&namedcmd=#{what}&ctype=atom", {"Cookie" => self.cookie} )
+      response = http.request(request)
+      case response
+        when Net::HTTPSuccess
+          bugs = []
+          xml = Nokogiri::XML.parse(response.body)
+          xml.root.xpath("//xmlns:entry/xmlns:link/@href", xml.root.namespace).each do |attr|
+            uri = URI.parse attr.value
+            bugs << uri.query.split("=")[1]
+          end
+          return bugs
+        when Net::HTTPRedirect
+          raise "HTTP redirect not supported in named_query"
+        else
+          raise "Error when expanding named query '#{what}': #{response}"
+      end
+    end
+
     # Retrieves one or more bugs by id
     def get_bugs(*ids)
       params = Hash.new
-      params[:ids] = ids.collect(&:to_s)
+      params[:ids] = ids.collect(&:to_s).map do |what|
+        if what =~ /^[0-9]+$/
+          next what.to_i
+        else
+          next expand_named_query(what)
+        end
+      end.flatten
 
       bugs = []
       ret = @client.call("Bug.get", params)
