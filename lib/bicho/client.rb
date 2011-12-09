@@ -62,9 +62,10 @@ module Bicho
     attr_reader :url, :userid
 
     def initialize(url)
-      url = URI.parse(url) if not url.is_a?(URI)
+      # Don't modify the original url
+      url = url.is_a?(URI) ? url.clone : URI.parse(url) 
       # save the unmodified (by plugins) url
-      @url = url.clone
+      @original_url = url.clone
 
       url.path = '/xmlrpc.cgi'
 
