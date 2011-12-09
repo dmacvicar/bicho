@@ -34,7 +34,7 @@ module Bicho::CLI::Commands
     def do(global_opts, opts, args)
       client = ::Bicho::Client.new(global_opts[:bugzilla])
       client.get_bugs(*args).each do |bug|
-        t.say("#{t.color(bug.id, :headline)} #{bug.summary}")
+        t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
       end
       return 0
     end
