@@ -86,10 +86,16 @@ module Bicho
 
       @client = XMLRPC::Client.new_from_uri(url.to_s, nil, 900)
       @client.set_debug
+
       # User.login sets the credentials cookie for subsequent calls
-      ret = @client.call("User.login", { 'login' => @client.user, 'password' => @client.password, 'remember' => 0 } )
-      handle_faults(ret)
-      @userid = ret['id']
+      if @client.user && @client.password
+        ret = @client.call("User.login", { 'login' => @client.user, 'password' => @client.password, 'remember' => 0 } )
+        handle_faults(ret)
+        @userid = ret['id']
+      end
+
+      # Save modified url
+      @url = url
     end
 
     def cookie
