@@ -16,5 +16,15 @@ class Query_test < Test::Unit::TestCase
     assert ret.collect(&:id).include?(645150)
 
   end
+  
+  def test_query_addition_of_attributes
+    ret = Bicho::Query.new.status("foo").status("bar")
+    assert_equal({"status" => ["foo", "bar"]}, ret.query_map)
+  end
+
+  def test_query_shortcuts
+    ret = Bicho::Query.new.open
+    assert_equal({"status" => [:new, :assigned, :needinfo, :reopened]}, ret.query_map)
+  end
 
 end
