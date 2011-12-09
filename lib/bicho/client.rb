@@ -27,6 +27,7 @@ require 'uri'
 require 'xmlrpc/client'
 require 'nokogiri'
 require 'net/https'
+require 'cgi'
 
 require 'bicho/bug'
 require 'bicho/query'
@@ -144,7 +145,7 @@ module Bicho
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.set_debug_output(Bicho::LoggerIODevice.new)
-      request = Net::HTTP::Get.new("/buglist.cgi?cmdtype=runnamed&namedcmd=#{what}&ctype=atom", {"Cookie" => self.cookie} )
+      request = Net::HTTP::Get.new("/buglist.cgi?cmdtype=runnamed&namedcmd=#{CGI.escape(what)}&ctype=atom", {"Cookie" => self.cookie} )
       response = http.request(request)
       case response
         when Net::HTTPSuccess
