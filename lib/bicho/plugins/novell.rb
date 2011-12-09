@@ -61,10 +61,11 @@ module Bicho
       def initialize_hook(url, logger)
 
         return if not url.host.include?('bugzilla.novell.com')
-
-        auth = Novell.oscrc_credentials
-        url.user = auth[:user]
-        url.password = auth[:password]
+        if Novell.oscrc_credentials
+          auth = Novell.oscrc_credentials
+          url.user = auth[:user]
+          url.password = auth[:password]
+        end
         url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
         url.path = url.path.gsub(/xmlrpc\.cgi/, 'tr_xmlrpc.cgi')
 
