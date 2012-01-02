@@ -58,17 +58,20 @@ module Bicho
         end
       end
 
-      def initialize_hook(url, logger)
-
-        return if not url.host.include?('bugzilla.novell.com')
+      def transform_api_url_hook(url, logger)
+        
+        return url if not url.host.include?('bugzilla.novell.com')
 
         auth = Novell.oscrc_credentials
+        
+        url = url.clone
         url.user = auth[:user]
         url.password = auth[:password]
         url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
         url.path = url.path.gsub(/xmlrpc\.cgi/, 'tr_xmlrpc.cgi')
 
         logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, "USER:PASS")}'")
+        return url
       end
 
     end

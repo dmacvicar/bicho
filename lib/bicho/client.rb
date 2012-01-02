@@ -62,15 +62,40 @@ module Bicho
 
     include Bicho::Logging
 
-    attr_reader :url, :userid
+    # @return [URI] XML-RPC API end-point
+    #
+    # This URL is automatically inferred from the
+    # Client#site_url
+    #
+    # Plugins can modify the inferred value by providing
+    # a transform_api_url_hook(url, logger) method returning
+    # the modified value.
+    #
+    attr_reader :api_url
 
-    def initialize(url)
+    # @return [URI] Bugzilla installation website
+    #
+    # This value is provided at construction time
+    attr_reader :site_url
+
+    # @return [String] user id, available after login
+    attr_reader :userid
+
+    # @visibility private
+    # Implemented only to warn users about the replacement
+    # APIs
+    def url
+      warn "url is deprecated. Use site_url or api_url"
+      raise NoMethodError
+    end
+
+    # @param [String] site_url Bugzilla installation site url
+    def initialize(site_url)
       # Don't modify the original url
-      url = url.is_a?(URI) ? url.clone : URI.parse(url) 
-      # save the unmodified (by plugins) url
-      @original_url = url.clone
-
-      url.path = '/xmlrpc.cgi'
+      @site_url = site_url.is_a?(URI) ? site_url.clone : URI.parse(site_url) 
+      
+      @api_url = @site_url.clone
+      @api_url.path = '/xmlrpc.cgi'
 
       # Scan plugins
       plugin_glob = File.join(File.dirname(__FILE__), 'plugins', '*.rb')
@@ -84,10 +109,14 @@ module Bicho
         pl_class = ::Bicho::Plugins.const_get(cnt)
         pl_instance = pl_class.new
         logger.debug("Loaded: #{pl_instance}")
-        pl_instance.initialize_hook(url, logger)
+
+        # Modify API url
+        if pl_instance.respond_to?(:transform_api_url_hook)
+          @api_url = pl_instance.transform_api_url_hook(@api_url, logger)
+        end
       end
 
-      @client = XMLRPC::Client.new_from_uri(url.to_s, nil, 900)
+      @client = XMLRPC::Client.new_from_uri(@api_url.to_s, nil, 900)
       @client.set_debug
 
       # User.login sets the credentials cookie for subsequent calls
@@ -96,9 +125,6 @@ module Bicho
         handle_faults(ret)
         @userid = ret['id']
       end
-
-      # Save modified url
-      @url = url
     end
 
     def cookie

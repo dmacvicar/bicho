@@ -80,7 +80,7 @@ module Bicho
     # URL where the bug can be viewed
     # Example: http://bugs.foo.com/2345
     def url
-      "#{@client.url}/#{id}"
+      "#{@client.site_url}/#{id}"
     end
 
   end
