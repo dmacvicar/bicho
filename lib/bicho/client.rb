@@ -167,7 +167,7 @@ module Bicho
       end
 
       logger.info("Expanding named query: '#{what}' with '#{cookie}'")
-      http = Net::HTTP.new(@url.host, @url.port)
+      http = Net::HTTP.new(@api_url.host, @api_url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.set_debug_output(Bicho::LoggerIODevice.new)
