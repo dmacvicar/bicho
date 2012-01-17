@@ -176,12 +176,16 @@ module Bicho
       case response
         when Net::HTTPSuccess
           bugs = []
-          xml = Nokogiri::XML.parse(response.body)
-          xml.root.xpath("//xmlns:entry/xmlns:link/@href", xml.root.namespace).each do |attr|
-            uri = URI.parse attr.value
-            bugs << uri.query.split("=")[1]
+          begin
+            xml = Nokogiri::XML.parse(response.body)
+            xml.root.xpath("//xmlns:entry/xmlns:link/@href", xml.root.namespace).each do |attr|
+              uri = URI.parse attr.value
+              bugs << uri.query.split("=")[1]
+            end
+            return bugs
+          rescue Nokogiri::XML::XPath::SyntaxError
+            raise "Named query '#{what}' not found"
           end
-          return bugs
         when Net::HTTPRedirect
           raise "HTTP redirect not supported in named_query"
         else
