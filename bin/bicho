@@ -34,6 +34,9 @@ ft = HighLine::ColorScheme.new do |cs|
   cs[:even_row]        = [ :green ]
   cs[:odd_row]         = [ :magenta ]
   cs[:error]           = [ :red ]
+  cs[:remove]           = [ :red ]
+  cs[:add]           = [ :green ]
+  cs[:changeset]           = [ :blue ]
 end
 
 HighLine.color_scheme = ft

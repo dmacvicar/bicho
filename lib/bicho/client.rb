@@ -31,6 +31,7 @@ require 'cgi'
 
 require 'bicho/bug'
 require 'bicho/query'
+require 'bicho/history'
 require 'bicho/logging'
 
 # Helper IO device that forwards to the logger, we use it
@@ -187,6 +188,25 @@ module Bicho
         else
           raise "Error when expanding named query '#{what}': #{response}"
       end
+    end
+
+    def get_history(*ids)
+      params = Hash.new
+      params[:ids] = ids.collect(&:to_s).map do |what|
+        if what =~ /^[0-9]+$/
+          next what.to_i
+        else
+          next expand_named_query(what)
+        end
+      end.flatten
+
+      histories = []
+      ret = @client.call("Bug.history", params)
+      handle_faults(ret)
+      ret['bugs'].each do |history|
+        histories << History.new(self, history)
+      end
+      histories
     end
 
     # Retrieves one or more bugs by id
