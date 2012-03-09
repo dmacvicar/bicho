@@ -32,6 +32,8 @@ module Bicho
   #
   class Query
 
+    include Enumerable
+
     # Iterates through the result of the current query.
     #
     # @note Requires Bicho.client to be set
