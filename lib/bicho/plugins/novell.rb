@@ -1,6 +1,6 @@
 #--
 # Copyright (c) 2011 SUSE LINUX Products GmbH
-#
+# => 
 # Author: Duncan Mac-Vicar P. <dmacvicar@suse.de>
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -40,22 +40,34 @@ module Bicho
     class Novell
 
       OSCRC_CREDENTIALS = "https://api.opensuse.org"
+      DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc')
 
-      def to_s
-        self.class.to_s
+      def self.oscrc_path=(path)
+        @oscrc_path = path
       end
 
-      def self.oscrc_credentials
-        oscrc = IniFile.new(File.join(ENV['HOME'], '.oscrc'))
-        if oscrc.has_section?(OSCRC_CREDENTIALS)
-          user = oscrc[OSCRC_CREDENTIALS]['user']
-          pass = oscrc[OSCRC_CREDENTIALS]['pass']
-          if user && pass
-            return {:user => user, :password => pass}
-          else
-            raise "No .oscrc credentials for bnc"
+      def self.oscrc_path
+        @oscrc_path ||= DEFAULT_OSCRC_PATH
+      end
+
+      def to_s
+        self.class.to_s        
+      end
+
+      def self.oscrc_credentials        
+        oscrc = IniFile.new(oscrc_path)
+        urls = [OSCRC_CREDENTIALS]
+        urls << "#{OSCRC_CREDENTIALS}/" if not OSCRC_CREDENTIALS.end_with?('/')
+        urls.each do |section|
+          if oscrc.has_section?(section)
+            user = oscrc[section]['user']
+            pass = oscrc[section]['pass']
+            if user && pass
+              return {:user => user, :password => pass}
+            end
           end
         end
+        raise "No valid .oscrc credentials for bnc. #{user} #{pass}"
       end
 
       def transform_api_url_hook(url, logger)
