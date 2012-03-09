@@ -85,7 +85,7 @@ module Bicho
 
     # @return [History] history for this bug
     def history
-      @client.get_history(id)
+      @client.get_history(id).first
     end
 
   end

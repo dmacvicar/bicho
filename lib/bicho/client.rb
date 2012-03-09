@@ -190,6 +190,7 @@ module Bicho
       end
     end
 
+    # @return [Array<History>] the history of the given bugs
     def get_history(*ids)
       params = Hash.new
       params[:ids] = ids.collect(&:to_s).map do |what|
