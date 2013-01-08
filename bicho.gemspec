@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{Library to access bugzilla}
   s.description = %q{Library to access bugzilla}
 
-  s.add_dependency("inifile", ["~> 0.4.1"])
-  s.add_dependency("trollop", [">= 1.16"])
-  s.add_dependency("highline", ["~> 1.6.2"])
+  s.add_dependency("inifile")
+  s.add_dependency("trollop")
+  s.add_dependency("highline")
   s.add_dependency("nokogiri")
 
 
