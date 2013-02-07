@@ -14,7 +14,7 @@ that exposes its features.
 Main use case is report generation, therefore only the following
 features are implemented right now:
 
-* get a bug
+* get bugs
 * search bugs
 
 Plugins can be written to deal with specific bugzilla installations.
@@ -26,16 +26,16 @@ Plugins can be written to deal with specific bugzilla installations.
     require 'bicho'
 
     server = Bicho::Client.new('http://bugzilla.gnome.org')
-    server.get(127043).each do |bug|
+    server.get_bugs(127043).each do |bug|
       puts bug.summary
       puts bug.url
     end
 
 You can give more than one bug or a named query, or both:
 
-    server.get(127043, 432423) => [....]
-    server.get("Named list") => [....]
-    server.get("Named list", 4423443) => [....]
+    server.get_bugs(127043, 432423) => [....]
+    server.get_bugs("Named list") => [....]
+    server.get_bugs("Named list", 4423443) => [....]
 
 === ActiveRecord-like API
 
