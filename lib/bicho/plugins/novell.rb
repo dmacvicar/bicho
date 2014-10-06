@@ -80,7 +80,6 @@ module Bicho
         url.user = auth[:user]
         url.password = auth[:password]
         url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
-        url.path = url.path.gsub(/xmlrpc\.cgi/, 'tr_xmlrpc.cgi')
 
         logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, "USER:PASS")}'")
         return url
