@@ -68,7 +68,7 @@ module Bicho
             puts oscrc.inspect
           end
         end
-        raise "No valid .oscrc credentials for Novell/SUSE bugzilla."
+        raise "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
       end
 
       def transform_api_url_hook(url, logger)
