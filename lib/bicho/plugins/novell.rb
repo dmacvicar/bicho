@@ -64,8 +64,6 @@ module Bicho
           pass = oscrc[section]['pass']
           if user && pass
             return {:user => user, :password => pass}
-          else
-            puts oscrc.inspect
           end
         end
         raise "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
