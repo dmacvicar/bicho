@@ -59,12 +59,13 @@ module Bicho
         urls = [OSCRC_CREDENTIALS]
         urls << "#{OSCRC_CREDENTIALS}/" if not OSCRC_CREDENTIALS.end_with?('/')
         urls.each do |section|
-          if oscrc.has_section?(section)
-            user = oscrc[section]['user']
-            pass = oscrc[section]['pass']
-            if user && pass
-              return {:user => user, :password => pass}
-            end
+          next if not oscrc.has_section?(section)
+          user = oscrc[section]['user']
+          pass = oscrc[section]['pass']
+          if user && pass
+            return {:user => user, :password => pass}
+          else
+            puts oscrc.inspect
           end
         end
         raise "No valid .oscrc credentials for Novell/SUSE bugzilla."
