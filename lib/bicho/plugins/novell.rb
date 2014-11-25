@@ -67,7 +67,7 @@ module Bicho
             end
           end
         end
-        raise "No valid .oscrc credentials for bnc. #{user} #{pass}"
+        raise "No valid .oscrc credentials for Novell/SUSE bugzilla."
       end
 
       def transform_api_url_hook(url, logger)
