@@ -51,10 +51,10 @@ module Bicho
       end
 
       def to_s
-        self.class.to_s        
+        self.class.to_s
       end
 
-      def self.oscrc_credentials        
+      def self.oscrc_credentials
         oscrc = IniFile.new(oscrc_path)
         urls = [OSCRC_CREDENTIALS]
         urls << "#{OSCRC_CREDENTIALS}/" if not OSCRC_CREDENTIALS.end_with?('/')
@@ -71,11 +71,11 @@ module Bicho
       end
 
       def transform_api_url_hook(url, logger)
-        
+
         return url if not url.host.include?('bugzilla.novell.com')
 
         auth = Novell.oscrc_credentials
-        
+
         url = url.clone
         url.user = auth[:user]
         url.password = auth[:password]
