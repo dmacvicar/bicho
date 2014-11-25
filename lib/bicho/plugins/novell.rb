@@ -55,7 +55,7 @@ module Bicho
       end
 
       def self.oscrc_credentials
-        oscrc = IniFile.new(oscrc_path)
+        oscrc = IniFile.load(oscrc_path)
         urls = [OSCRC_CREDENTIALS]
         urls << "#{OSCRC_CREDENTIALS}/" if not OSCRC_CREDENTIALS.end_with?('/')
         urls.each do |section|
