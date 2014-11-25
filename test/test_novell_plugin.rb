@@ -1,5 +1,6 @@
 require File.join(File.dirname(__FILE__), 'helper')
 require 'bicho/plugins/novell'
+require 'tmpdir'
 
 class NovellPlugin_test < Test::Unit::TestCase
 
@@ -15,13 +16,28 @@ class NovellPlugin_test < Test::Unit::TestCase
 
   end
 
+  def self.write_fake_oscrc(path)
+    File.open(path, 'w') do |f|
+      f.write(<<EOS)
+[https://api.opensuse.org]
+user= foo
+pass=bar
+# fake osc file
+EOS
+    end
+  end
+
   def test_oscrc_parsing
-    Bicho::Plugins::Novell.oscrc_path = "/space/tmp/oscrc-uwe"
-    plugin = Bicho::Plugins::Novell.new
-    credentials = Bicho::Plugins::Novell.oscrc_credentials
-    assert_not_nil(credentials)
-    assert(credentials.has_key?(:user))
-    assert(credentials.has_key?(:password))
+    Dir.mktmpdir do |tmp|
+      fake_oscrc = File.join(tmp, 'oscrc')
+      write_fake_oscrc(fake_oscrc)
+      Bicho::Plugins::Novell.oscrc_path = fake_oscrc
+      plugin = Bicho::Plugins::Novell.new
+      credentials = Bicho::Plugins::Novell.oscrc_credentials
+      assert_not_nil(credentials)
+      assert(credentials.has_key?(:user))
+      assert(credentials.has_key?(:password))
+    end
   end
 
 end
