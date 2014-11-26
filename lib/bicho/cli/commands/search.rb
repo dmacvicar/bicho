@@ -34,18 +34,18 @@ module Bicho::CLI::Commands
     options do
       # add all fields as command line options of this command
       Bicho::SEARCH_FIELDS.each do |field|
-        opt field[0], field[2], :type => field[1], :multi => field[3]
+        opt field[0], field[2], type: field[1], multi: field[3]
       end
     end
 
-    def do(global_opts, opts, args)
+    def do(global_opts, opts, _args)
       server = ::Bicho::Client.new(global_opts[:bugzilla])
       # for most parameter we accept arrays, and also multi mode
       # this means parameters come in arrays of arrays
       query = ::Bicho::Query.new
-      opts.each do |n,v|
+      opts.each do |n, v|
         # skip any option that is not part of SEARCH_FIELDS
-        next if not Bicho::SEARCH_FIELDS.map { |x| x[0] }.include?(n)
+        next unless Bicho::SEARCH_FIELDS.map { |x| x[0] }.include?(n)
         next if v.nil? || v.flatten.empty?
         v.flatten.each do |single_val|
           query.send(n.to_sym, single_val)
@@ -55,8 +55,7 @@ module Bicho::CLI::Commands
       server.search_bugs(query).each do |bug|
         t.say("#{t.color(bug.id, :headline)} #{bug.summary}")
       end
-      return 0
+      0
     end
-
   end
 end

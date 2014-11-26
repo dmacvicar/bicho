@@ -30,12 +30,12 @@ module Bicho
   # API by allowing to set a default [Client]
   # to make operations.
   module CommonClient
-    def self.common_client=(client)
-      @common_client = client
+    class << self
+      attr_writer :common_client
     end
 
     def self.common_client
-      @common_client || (raise "No common client set")
+      @common_client || (fail 'No common client set')
     end
 
     def common_client
@@ -53,5 +53,4 @@ module Bicho
   def self.client
     CommonClient.common_client
   end
-
 end

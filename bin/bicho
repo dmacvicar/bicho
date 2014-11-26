@@ -23,17 +23,17 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-$:.push(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.push(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'bicho'
 require 'highline/import'
 
 # Set the console color scheme
 ft = HighLine::ColorScheme.new do |cs|
-  cs[:headline]        = [ :bold ]
-  cs[:horizontal_line] = [ :bold, :white ]
-  cs[:even_row]        = [ :green ]
-  cs[:odd_row]         = [ :magenta ]
-  cs[:error]           = [ :red ]
+  cs[:headline]        = [:bold]
+  cs[:horizontal_line] = [:bold, :white]
+  cs[:even_row]        = [:green]
+  cs[:odd_row]         = [:magenta]
+  cs[:error]           = [:red]
 end
 
 HighLine.color_scheme = ft
@@ -57,15 +57,15 @@ begin
   # symbols in BzConsole module
   SUB_COMMANDS = Bicho::CLI::Commands.constants.sort.map(&:to_s).map(&:downcase)
 
-  global_opts = Trollop::options do
+  global_opts = Trollop.options do
     banner <<-EOS
     Usage: #{File.basename(__FILE__)} [global options] <command> ...
 
     Bugzilla url can be given as https://bugs.kde.org or bko
 EOS
-    opt :config, "Read FILE as configuration file.", :type => :io
-    opt :debug, "Show debug messages", :default => false
-    opt :bugzilla, "Bugzilla URL or alias", :default => 'bnz'
+    opt :config, 'Read FILE as configuration file.', type: :io
+    opt :debug, 'Show debug messages', default: false
+    opt :bugzilla, 'Bugzilla URL or alias', default: 'bnz'
     stop_on SUB_COMMANDS
   end
 
@@ -74,8 +74,8 @@ EOS
   # get the subcommand
   cmd = ARGV.shift rescue nil
 
-  if (!cmd || !SUB_COMMANDS.include?(cmd))
-    Trollop.die "available subcommands: #{SUB_COMMANDS.join(" ")}"
+  if !cmd || !SUB_COMMANDS.include?(cmd)
+    Trollop.die "available subcommands: #{SUB_COMMANDS.join(' ')}"
   end
 
   # Create an instance for the command

@@ -27,9 +27,7 @@ require 'trollop'
 require 'highline'
 
 module Bicho
-
   module CLI
-
     # Bicho allows to easily add commands to the
     # command line interface.
     #
@@ -55,7 +53,6 @@ module Bicho
     # </tt>
     #
     class Command
-
       include ::Bicho::Logging
 
       class << self; attr_accessor :parser end
@@ -68,8 +65,8 @@ module Bicho
 
       # Gateway to Trollop
       def self.opt(*args)
-        self.parser = Trollop::Parser.new if not self.parser
-        self.parser.opt(*args)
+        self.parser = Trollop::Parser.new unless parser
+        parser.opt(*args)
       end
 
       # DSL method to describe a command's option
@@ -80,8 +77,8 @@ module Bicho
       # Called by the cli to get the options
       # with current ARGV
       def parse_options
-        self.class.parser = Trollop::Parser.new if not self.class.parser
-        opts = Trollop::with_standard_exception_handling(self.class.parser) do
+        self.class.parser = Trollop::Parser.new unless self.class.parser
+        opts = Trollop.with_standard_exception_handling(self.class.parser) do
           o = self.class.parser.parse ARGV
         end
       end
@@ -90,10 +87,9 @@ module Bicho
         self.class.parser
       end
 
-      def do(opts, args)
-        raise RuntimeError, "No implementation for #{self.class}" if self.class =~ /CommandTemplate/
+      def do(_opts, _args)
+        fail RuntimeError, "No implementation for #{self.class}" if self.class =~ /CommandTemplate/
       end
-
     end
   end
 end

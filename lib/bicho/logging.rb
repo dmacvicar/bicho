@@ -27,9 +27,8 @@ require 'bicho/ext/logger_colors'
 
 module Bicho
   module Logging
-
-    def self.logger=(logger)
-      @logger = logger
+    class << self
+      attr_writer :logger
     end
 
     def self.logger
@@ -39,6 +38,5 @@ module Bicho
     def logger
       Logging.logger
     end
-
   end
 end

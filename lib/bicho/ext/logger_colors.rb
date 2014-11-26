@@ -26,22 +26,22 @@ class Logger
     WHITE        = '1;37'
 
     SCHEMA = {
-      STDOUT => %w[nothing green brown red purple cyan],
-      STDERR => %w[nothing green yellow light_red light_purple light_cyan],
+      STDOUT => %w(nothing green brown red purple cyan),
+      STDERR => %w(nothing green yellow light_red light_purple light_cyan)
     }
   end
 end
 
 class Logger
-  alias format_message_colorless format_message
+  alias_method :format_message_colorless, :format_message
 
   def format_message(level, *args)
     if Logger::Colors::SCHEMA[@logdev.dev]
       color = begin
         Logger::Colors.const_get \
-          Logger::Colors::SCHEMA[@logdev.dev][Logger.const_get(level.sub "ANY","UNKNOWN")].to_s.upcase
+          Logger::Colors::SCHEMA[@logdev.dev][Logger.const_get(level.sub 'ANY', 'UNKNOWN')].to_s.upcase
       rescue NameError
-        "0;0"
+        '0;0'
       end
       "\e[#{ color }m#{ format_message_colorless(level, *args) }\e[0;0m"
     else

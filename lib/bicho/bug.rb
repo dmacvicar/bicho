@@ -1,9 +1,7 @@
 require 'bicho/query'
 
 module Bicho
-
   class Bug
-
     # ActiveRecord like interface
     #
     # @example Searching for bugs
@@ -43,8 +41,8 @@ module Bicho
     #
     # @see http://www.bugzilla.org/docs/tip/en/html/api/Bugzilla/WebService/Bug.html#search bugzilla search API and allowed attributes
     #
-    def self.where(conditions={})
-      return Query.new(conditions)
+    def self.where(conditions = {})
+      Query.new(conditions)
     end
 
     # Normally you will not use this constructor as
@@ -57,7 +55,7 @@ module Bicho
       @data = data
     end
 
-    def method_missing(name, *args)
+    def method_missing(name, *_args)
       @data[name.to_s]
     end
 
@@ -71,7 +69,7 @@ module Bicho
       "##{id} - #{summary} (#{url})"
     end
 
-    def [] name, subname = nil
+    def [](name, subname = nil)
       v = @data[name.to_s]
       v = v[subname.to_s] if subname # for 'internals' properties
       v
@@ -82,7 +80,5 @@ module Bicho
     def url
       "#{@client.site_url}/#{id}"
     end
-
   end
-
 end

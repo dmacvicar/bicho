@@ -1,6 +1,6 @@
 #--
 # Copyright (c) 2011 SUSE LINUX Products GmbH
-# => 
+# =>
 # Author: Duncan Mac-Vicar P. <dmacvicar@suse.de>
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -27,7 +27,6 @@ require 'uri'
 
 module Bicho
   module Plugins
-
     # Novell bugzilla is behind ichain
     #
     # Plugin that rewrites the bugzilla API url
@@ -38,12 +37,11 @@ module Bicho
     # your oscrc.
     #
     class Novell
-
-      OSCRC_CREDENTIALS = "https://api.opensuse.org"
+      OSCRC_CREDENTIALS = 'https://api.opensuse.org'
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc')
 
-      def self.oscrc_path=(path)
-        @oscrc_path = path
+      class << self
+        attr_writer :oscrc_path
       end
 
       def self.oscrc_path
@@ -57,21 +55,21 @@ module Bicho
       def self.oscrc_credentials
         oscrc = IniFile.load(oscrc_path)
         urls = [OSCRC_CREDENTIALS]
-        urls << "#{OSCRC_CREDENTIALS}/" if not OSCRC_CREDENTIALS.end_with?('/')
+        urls << "#{OSCRC_CREDENTIALS}/" unless OSCRC_CREDENTIALS.end_with?('/')
         urls.each do |section|
-          next if not oscrc.has_section?(section)
+          next unless oscrc.has_section?(section)
           user = oscrc[section]['user']
           pass = oscrc[section]['pass']
           if user && pass
-            return {:user => user, :password => pass}
+            return { user: user, password: pass }
           end
         end
-        raise "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
+        fail "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
       end
 
       def transform_api_url_hook(url, logger)
         domains = ['bugzilla.novell.com', 'bugzilla.suse.com']
-        return url unless domains.map {|domain| url.host.include?(domain)}.any?
+        return url unless domains.map { |domain| url.host.include?(domain) }.any?
 
         auth = Novell.oscrc_credentials
 
@@ -82,10 +80,9 @@ module Bicho
         url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.novell.com')
         url.scheme = 'https'
 
-        logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, "USER:PASS")}'")
-        return url
+        logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, 'USER:PASS')}'")
+        url
       end
-
     end
   end
 end

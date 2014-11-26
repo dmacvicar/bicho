@@ -3,16 +3,15 @@ require 'bicho/plugins/novell'
 require 'tmpdir'
 
 class NovellPlugin_test < Test::Unit::TestCase
-
   def test_urls_are_correct
-    ['novell', 'suse'].each do |domain|
+    %w(novell suse).each do |domain|
       client = Bicho::Client.new("https://bugzilla.#{domain}.com")
       assert_raises NoMethodError do
         client.url
       end
 
-      #assert_equal "https://apibugzilla.#{domain}.com/xmlrpc.cgi", "#{client.api_url.scheme}://#{client.api_url.host}#{client.api_url.path}"
-      #assert_equal "https://bugzilla.#{domain}.com", "#{client.site_url.scheme}://#{client.site_url.host}#{client.site_url.path}"
+      # assert_equal "https://apibugzilla.#{domain}.com/xmlrpc.cgi", "#{client.api_url.scheme}://#{client.api_url.host}#{client.api_url.path}"
+      # assert_equal "https://bugzilla.#{domain}.com", "#{client.site_url.scheme}://#{client.site_url.host}#{client.site_url.path}"
     end
   end
 
@@ -35,10 +34,9 @@ EOS
       plugin = Bicho::Plugins::Novell.new
       credentials = Bicho::Plugins::Novell.oscrc_credentials
       assert_not_nil(credentials)
-      assert(credentials.has_key?(:user))
-      assert(credentials.has_key?(:password))
+      assert(credentials.key?(:user))
+      assert(credentials.key?(:password))
       Bicho::Plugins::Novell.oscrc_path = nil
     end
   end
-
 end

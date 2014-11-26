@@ -25,13 +25,11 @@
 require 'bicho/common_client'
 
 module Bicho
-
   # Represents a bug search to the server and it can
   # be configured with all bug attributes.
   #
   #
   class Query
-
     include Enumerable
 
     # Iterates through the result of the current query.
@@ -41,7 +39,7 @@ module Bicho
     # @yield [Bicho::Bug]
     def each
       ret = Bicho.client.search_bugs(self)
-      return ret.each if not block_given?
+      return ret.each unless block_given?
       ret.each { |bug| yield bug }
      end
 
@@ -57,7 +55,7 @@ module Bicho
     # @example using chainable methods:
     #   q = Query.new.assigned_to("foo@bar.com@).summary("some text")
     #
-    def initialize(conditions={})
+    def initialize(conditions = {})
       @query_map = conditions
     end
 
@@ -79,11 +77,12 @@ module Bicho
     # Shortcut, equivalent to
     #   :summary => "L3"
     def L3
-      append_query("summary", "L3")
+      append_query('summary', 'L3')
       self
     end
 
     private
+
     # Appends a parameter to the query map
     #
     # Only used internally.
@@ -93,12 +92,10 @@ module Bicho
     #
     # @private
     def append_query(param, value)
-      if not @query_map.has_key?(param)
-        @query_map[param] = Array.new
+      unless @query_map.key?(param)
+        @query_map[param] = []
       end
       @query_map[param] = [@query_map[param], value].flatten
     end
-
   end
-
 end

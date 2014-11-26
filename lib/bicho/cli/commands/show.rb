@@ -31,13 +31,12 @@ module Bicho::CLI::Commands
     options do
     end
 
-    def do(global_opts, opts, args)
+    def do(global_opts, _opts, args)
       client = ::Bicho::Client.new(global_opts[:bugzilla])
       client.get_bugs(*args).each do |bug|
         t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
       end
-      return 0
+      0
     end
-
   end
 end
