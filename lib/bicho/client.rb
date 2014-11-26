@@ -162,34 +162,51 @@ module Bicho
     # on the server
     # @returns [Array<String>] list of bugs
     def expand_named_query(what)
+      url = @api_url.clone
+      url.path = '/buglist.cgi'
+      url.query = "cmdtype=runnamed&namedcmd=#{URI.escape(what)}&ctype=atom"
+      logger.info("Expanding named query: '#{what}' to #{url.request_uri}")
+      fetch_named_query_url(url, 5)
+    end
+
+    # Fetches a named query by its full url
+    # @private
+    # @returns [Array<String>] list of bugs
+    def fetch_named_query_url(url, redirects_left)
       if not @userid
         raise "You need to be authenticated to use named queries"
       end
-
-      logger.info("Expanding named query: '#{what}' with '#{cookie}'")
       http = Net::HTTP.new(@api_url.host, @api_url.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.set_debug_output(Bicho::LoggerIODevice.new)
-      request = Net::HTTP::Get.new("/buglist.cgi?cmdtype=runnamed&namedcmd=#{CGI.escape(what)}&ctype=atom", {"Cookie" => self.cookie} )
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.use_ssl = (@api_url.scheme == 'https')
+      #request = Net::HTTP::Get.new(url.request_uri, {'Cookie' => self.cookie})
+      request = Net::HTTP::Get.new(url.request_uri)
+      request.basic_auth @api_url.user, @api_url.password
       response = http.request(request)
       case response
-        when Net::HTTPSuccess
-          bugs = []
-          begin
-            xml = Nokogiri::XML.parse(response.body)
-            xml.root.xpath("//xmlns:entry/xmlns:link/@href", xml.root.namespace).each do |attr|
-              uri = URI.parse attr.value
-              bugs << uri.query.split("=")[1]
-            end
-            return bugs
-          rescue Nokogiri::XML::XPath::SyntaxError
-            raise "Named query '#{what}' not found"
+      when Net::HTTPSuccess
+        bugs = []
+        begin
+          xml = Nokogiri::XML.parse(response.body)
+          xml.root.xpath("//xmlns:entry/xmlns:link/@href", xml.root.namespace).each do |attr|
+            uri = URI.parse attr.value
+            bugs << uri.query.split("=")[1]
           end
-        when Net::HTTPRedirect
-          raise "HTTP redirect not supported in named_query"
-        else
-          raise "Error when expanding named query '#{what}': #{response}"
+          return bugs
+        rescue Nokogiri::XML::XPath::SyntaxError
+          raise "Named query '#{url.request_uri}' not found"
+        end
+      when Net::HTTPRedirection
+        location = response['location']
+        if (redirects_left == 0)
+          raise "Maximum redirects exceeded (redirected to #{location})"
+        end
+        new_location_uri = URI.parse(location)
+        logger.debug("Moved to #{new_location_uri}")
+        fetch_named_query_url(new_location_uri, redirects_left - 1)
+      else
+        raise "Error when expanding named query '#{url.request_uri}': #{response}"
       end
     end
 

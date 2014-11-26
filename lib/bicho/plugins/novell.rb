@@ -70,8 +70,8 @@ module Bicho
       end
 
       def transform_api_url_hook(url, logger)
-
-        return url if not url.host.include?('bugzilla.novell.com')
+        domains = ['bugzilla.novell.com', 'bugzilla.suse.com']
+        return url unless domains.map {|domain| url.host.include?(domain)}.any?
 
         auth = Novell.oscrc_credentials
 
@@ -79,6 +79,8 @@ module Bicho
         url.user = auth[:user]
         url.password = auth[:password]
         url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
+        url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.novell.com')
+        url.scheme = 'https'
 
         logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, "USER:PASS")}'")
         return url
