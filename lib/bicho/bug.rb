@@ -80,5 +80,11 @@ module Bicho
     def url
       "#{@client.site_url}/#{id}"
     end
+
+    # @return [History] history for this bug
+    def history
+      @client.get_history(id).first
+    end
+
   end
 end

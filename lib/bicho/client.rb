@@ -30,6 +30,7 @@ require 'net/https'
 require 'cgi'
 
 require 'bicho/bug'
+require 'bicho/history'
 require 'bicho/query'
 require 'bicho/logging'
 
@@ -227,5 +228,26 @@ module Bicho
       end
       bugs
     end
+
+    # @return [Array<History>] the history of the given bugs
+    def get_history(*ids)
+      params = {}
+      params[:ids] = ids.collect(&:to_s).map do |what|
+        if what =~ /^[0-9]+$/
+          next what.to_i
+        else
+          next expand_named_query(what)
+        end
+      end.flatten
+
+      histories = []
+      ret = @client.call("Bug.history", params)
+      handle_faults(ret)
+      ret['bugs'].each do |history|
+        histories << History.new(self, history)
+      end
+      histories
+    end
+
   end
 end

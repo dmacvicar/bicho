@@ -29,6 +29,8 @@ Plugins can be written to deal with specific bugzilla installations.
     server.get_bugs(127043).each do |bug|
       puts bug.summary
       puts bug.url
+
+      puts bug.history
     end
 
 You can give more than one bug or a named query, or both:
@@ -59,6 +61,8 @@ to set the Bicho common client:
 == Example (CLI)
 
     bicho -b http://bugzilla.gnome.org show 127043
+
+    bicho -b http://bugzilla.gnome.org history 127043
 
     bicho -b https://bugzilla.gnome.org search --summary "crash"
 
