@@ -36,7 +36,7 @@ module Bicho::CLI::Commands
       client = ::Bicho::Client.new(global_opts[:bugzilla])
       client.get_history(*args).each do |history|
         t.say("#{t.color(history.bug_id.to_s, :headline)} #{history.bug.summary}")
-        history.change_sets.each do |cs|
+        history.changesets.each do |cs|
           text = "  #{cs.date} - #{cs.who}"
           t.say(t.color(text, :changeset))
           cs.changes.each do |change|

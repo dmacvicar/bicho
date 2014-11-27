@@ -209,7 +209,14 @@ module Bicho
       end
     end
 
+    # Gets a single bug
+    # @return [Bug] a single bug by id
+    def get_bug(id)
+      get_bugs(id).first
+    end
+
     # Retrieves one or more bugs by id
+    # @return [Array<Bug>] a list of bugs
     def get_bugs(*ids)
       params = {}
       params[:ids] = ids.collect(&:to_s).map do |what|
@@ -243,8 +250,8 @@ module Bicho
       histories = []
       ret = @client.call("Bug.history", params)
       handle_faults(ret)
-      ret['bugs'].each do |history|
-        histories << History.new(self, history)
+      ret['bugs'].each do |history_data|
+        histories << History.new(self, history_data)
       end
       histories
     end

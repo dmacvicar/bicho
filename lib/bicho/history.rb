@@ -84,7 +84,25 @@ module Bicho
     end
   end
 
+  # A collection of Changesets associated with a bug
   class History
+    include Enumerable
+
+    # iterate over each changeset
+    def each
+      changesets.each
+    end
+
+    # @return [Fixnum] number of changesets
+    def size
+      changesets.size
+    end
+
+    # @return [Boolean] true when there are no changesets
+    def empty?
+      changesets.empty?
+    end
+
     def initialize(client, data)
       @client = client
       @data = data
@@ -97,12 +115,13 @@ module Bicho
     # @return [String] The numeric id of the bug
     def bug
       unless @bug
-        @bug = @client.get_bugs(@data['id']).first
+        @bug = @client.get_bug(@data['id'])
       end
       @bug
     end
 
-    def change_sets
+    # @return [Array<ChangeSet>] collection of changesets
+    def changesets
       @data['history'].map do |changeset|
         ChangeSet.new(@client, changeset)
       end
