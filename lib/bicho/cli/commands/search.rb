@@ -53,7 +53,7 @@ module Bicho::CLI::Commands
       end
 
       server.search_bugs(query).each do |bug|
-        t.say("#{t.color(bug.id, :headline)} #{bug.summary}")
+        t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
       end
       0
     end
