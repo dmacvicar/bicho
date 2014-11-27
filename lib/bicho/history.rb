@@ -130,7 +130,7 @@ module Bicho
     def to_s
       buffer = StringIO.new
       buffer << "#{bug_id}\n"
-      change_sets.each do |cs|
+      changesets.each do |cs|
         buffer << "#{cs}\n"
       end
       buffer.string
