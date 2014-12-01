@@ -38,6 +38,10 @@ module Bicho
       @data['added']
     end
 
+    def attachment_id
+      @data['attachment_id']
+    end
+
     def to_s
       buffer = StringIO.new
       buffer << "- #{field_name} = #{removed}\n"
@@ -52,9 +56,17 @@ module Bicho
   end
 
   class ChangeSet
-    # return [Date] The date the bug activity/change happened.
+
+    include Enumerable
+
     def date
-      @data['when'].to_date
+      warn 'Deprecated. Use timestamp instead'
+      timestamp
+    end
+      
+    # return [Date] The date the bug activity/change happened.
+    def timestamp
+      @data['when'].to_time
     end
 
     # @return [String] The login name of the user who performed the bug change
@@ -66,6 +78,14 @@ module Bicho
     def changes
       @data['changes'].map do |change|
         Change.new(@client, change)
+      end
+    end
+
+    # iterate over each changeset
+    def each
+      return enum_for(:each) unless block_given?
+      changes.each do |chg|
+        yield chg
       end
     end
 
@@ -90,7 +110,10 @@ module Bicho
 
     # iterate over each changeset
     def each
-      changesets.each
+      return enum_for(:each) unless block_given?
+      changesets.each do |cs|
+        yield cs
+      end
     end
 
     # @return [Fixnum] number of changesets
