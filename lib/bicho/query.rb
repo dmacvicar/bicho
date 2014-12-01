@@ -71,7 +71,16 @@ module Bicho
 
     # Shortcut equivalent to status new, assigned, needinfo and reopened
     def open
-      status(:new).status(:assigned).status(:needinfo).status(:reopened)
+      status(:new)
+        .status(:assigned)
+        .status(:needinfo)
+        .status(:reopened)
+        .status(:confirmed) # new statuses after bz upgrade
+        .status(:in_progress)
+    end
+
+    def closed
+      status(:resolved).status(:verified)
     end
 
     # Shortcut, equivalent to
