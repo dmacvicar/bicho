@@ -5,83 +5,31 @@ module Bicho
   # In memory cache for a bug collection
   class Cache
 
+    attr_reader :db
+
     def initialize
       initialize_database
     end
 
     # prepares the tables for the cache
     def initialize_database
-      #@db = SQLite3::Database.new(':memory:')
+      sql_dir = File.join(File.dirname(__FILE__), 'cache')
+
+      # @db = SQLite3::Database.new(':memory:')
       @db = SQLite3::Database.new('test.sqlite')
+      @db.execute_batch(
+        File.read(File.expand_path('tables.sql', sql_dir)))
 
-      @db.execute(%{
-        CREATE TABLE IF NOT EXISTS bugs (
-          id integer,
-          alias text,
-          assigned_to text,
-          component text,
-          creation_time text,
-          dupe_of integer,
-          is_open boolean,
-          last_change_time text,
-          priority text,
-          product text,
-          resolution text,
-          severity text,
-          status text,
-          summary text,
-          PRIMARY KEY(id)
-        );})
-      @db.execute(%{
-        CREATE INDEX bug_status_idx on bugs(status);
-      })
-      @db.execute(%{
-        CREATE INDEX bug_open_idx on bugs(is_open);
-      })
+      # add views for metrics
+      @db.execute_batch(
+        File.read(File.expand_path('views.sql', sql_dir)))
 
-      @db.execute(%{
-        CREATE TABLE IF NOT EXISTS history_entries (
-          id integer,
-          bug_id integer,
-          [when] text,
-          who text,
-          PRIMARY KEY(id),
-          FOREIGN KEY(bug_id) REFERENCES bugs(id)
-        );})
-      @db.execute(%{
-        CREATE INDEX history_bug_id_idx on history_entries(bug_id);
-      })
-
-      @db.execute(%{
-        CREATE TABLE IF NOT EXISTS changes (
-          id integer,
-          history_entry_id integer integer,
-          field_name text,
-          removed text,
-          added text,
-          attachment_id integer,
-          PRIMARY KEY(id),
-          FOREIGN KEY(history_entry_id) REFERENCES history_entries(id)
-        );
-      })
-      @db.execute(%{
-        CREATE INDEX changes_history_idx on changes(history_entry_id);
-      })
-      @db.execute(%{
-        CREATE INDEX changes_field_idx on changes(field_name);
-      })
-
-      @bug_stmt = @db.prepare(%{
-        INSERT INTO bugs VALUES
-          (:id, :alias, :assigned_to, :component, :creation_time, :dupe_of,
-           :is_open, :last_change_time, :priority, :product, :resolution,
-           :severity, :status, :summary)})
+      @bug_stmt = @db.prepare(
+        File.read(File.expand_path('insert_bugs.sql', sql_dir)))
       @changeset_stmt = @db.prepare(
-        'INSERT INTO history_entries (bug_id, [when], who) VALUES (?, ?, ?)')
-      @change_stmt = @db.prepare(%{
-        INSERT INTO changes
-          (history_entry_id, field_name, removed, added, attachment_id)
-        VALUES (?, ?, ?, ?, ?)})
+        File.read(File.expand_path('insert_history.sql', sql_dir)))
+      @change_stmt = @db.prepare(
+        File.read(File.expand_path('insert_changes.sql', sql_dir)))
     end
 
     # Adds basic bug information to the cache

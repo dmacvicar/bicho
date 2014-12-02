@@ -1,4 +1,5 @@
 require 'bicho/cache'
+require 'stringio'
 
 module Bicho
 
@@ -8,16 +9,13 @@ module Bicho
       @cache = cache
     end
 
-    def monthly_metrics_for_range(from, to)
-      metrics_for_dates(
-        (from..to).select {|d| d.day == 1}.to_enum(:each))
-    end
-
-    
-    def metrics_for_dates(dates)
-      dates.each do |date|
-        puts date
+    def write_monthly_stats_csv(buf)
+      buf.puts %w(Month Open Closed New).join("\t")
+      @cache.db.execute('SELECT * FROM months_stat') do |row|
+        row[2] = row[2] * -1
+        buf.puts row.join("\t")
       end
     end
+
   end
 end
