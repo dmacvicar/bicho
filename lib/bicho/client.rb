@@ -90,30 +90,31 @@ module Bicho
 
     # @param [String] site_url Bugzilla installation site url
     def initialize(site_url)
+      @plugins = []
+      load_plugins!
+      instantiate_plugins!
+
+      @plugins.each do |pl_instance|
+        # Modify site url
+        if pl_instance.respond_to?(:transform_site_url_hook)
+          site_url = pl_instance.transform_site_url_hook(site_url, logger)
+        end
+      end
+
       # Don't modify the original url
       @site_url = site_url.is_a?(URI) ? site_url.clone : URI.parse(site_url)
 
-      @api_url = @site_url.clone
-      @api_url.path = '/xmlrpc.cgi'
+      api_url = @site_url.clone
+      api_url.path = '/xmlrpc.cgi'
 
-      # Scan plugins
-      plugin_glob = File.join(File.dirname(__FILE__), 'plugins', '*.rb')
-      Dir.glob(plugin_glob).each do |plugin|
-        logger.debug("Loading file: #{plugin}")
-        load plugin
-      end
-
-      # instantiate plugins
-      ::Bicho::Plugins.constants.each do |cnt|
-        pl_class = ::Bicho::Plugins.const_get(cnt)
-        pl_instance = pl_class.new
-        logger.debug("Loaded: #{pl_instance}")
-
+      @plugins.each do |pl_instance|
         # Modify API url
         if pl_instance.respond_to?(:transform_api_url_hook)
-          @api_url = pl_instance.transform_api_url_hook(@api_url, logger)
+          api_url = pl_instance.transform_api_url_hook(api_url, logger)
         end
       end
+
+      @api_url = api_url.is_a?(URI) ? api_url.clone : URI.parse(api_url)
 
       @client = XMLRPC::Client.new_from_uri(@api_url.to_s, nil, 900)
       @client.set_debug
@@ -123,6 +124,28 @@ module Bicho
         ret = @client.call('User.login',  'login' => @client.user, 'password' => @client.password, 'remember' => 0)
         handle_faults(ret)
         @userid = ret['id']
+      end
+    end
+
+    # ruby-load all the files in the plugins directory
+    def load_plugins!
+      # Scan plugins
+      plugin_glob = File.join(File.dirname(__FILE__), 'plugins', '*.rb')
+      Dir.glob(plugin_glob).each do |plugin|
+        logger.debug("Loading file: #{plugin}")
+        load plugin
+      end
+    end
+
+    # instantiate all plugin classes in the Bicho::Plugins
+    # module and add them to the list of known plugins
+    def instantiate_plugins!
+      # instantiate plugins
+      ::Bicho::Plugins.constants.each do |cnt|
+        pl_class = ::Bicho::Plugins.const_get(cnt)
+        pl_instance = pl_class.new
+        logger.debug("Loaded: #{pl_instance}")
+        @plugins << pl_instance
       end
     end
 
