@@ -68,7 +68,7 @@ begin
 EOS
     opt :config, 'Read FILE as configuration file.', type: :io
     opt :debug, 'Show debug messages', default: false
-    opt :bugzilla, 'Bugzilla URL or alias', default: 'bnz'
+    opt :bugzilla, 'Bugzilla URL or alias', type: :string
     stop_on SUB_COMMANDS
   end
 

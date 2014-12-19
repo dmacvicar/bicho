@@ -62,11 +62,24 @@ to set the Bicho common client:
 
     bicho -b http://bugzilla.gnome.org show 127043
 
-    bicho -b http://bugzilla.gnome.org history 127043
+    bicho -b gnome history 127043
 
-    bicho -b https://bugzilla.gnome.org search --summary "crash"
+    bicho -b gnome search --summary "crash"
 
-    bicho -b https://bugzilla.gnome.org search --help
+    bicho -b gnome search --help
+
+== Customizing Bicho: the user.rb plugin.
+
+Plugins are included that provide shortcuts for the most common bugzilla sites.
+
+There is a "user" plugin that does some of these shortcuts from a configuration file.
+
+The settings are read from '.config/bicho/config.yml'. There you can specify the default
+bugzilla site to use when none is specified and custom aliases.
+
+    aliases:
+      mysite: http://bugzilla.site.com
+    default: mysite
 
 == Extending Bicho
 
@@ -74,6 +87,10 @@ to set the Bicho common client:
 
 Plugins are classes in the module Bicho::Plugins. They can implement hooks that are
 called at different points of execution.
+
+* default_site_url_hook
+
+  If no site url is provided the last one provided by a plugin will be used.
 
 * transform_site_url_hook
 

@@ -94,8 +94,19 @@ module Bicho
       load_plugins!
       instantiate_plugins!
 
+      if site_url.nil?
+        @plugins.each do |pl_instance|
+          if pl_instance.respond_to?(:default_site_url_hook)
+            default = pl_instance.default_site_url_hook(logger)
+            site_url = default unless default.nil?
+          end
+        end
+      end
+
+      # If the default url is still null, we can't continue
+      fail ArgumentError, 'missing bugzilla site' if site_url.nil?
+
       @plugins.each do |pl_instance|
-        # Modify site url
         if pl_instance.respond_to?(:transform_site_url_hook)
           site_url = pl_instance.transform_site_url_hook(site_url, logger)
         end
