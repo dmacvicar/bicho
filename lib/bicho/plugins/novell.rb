@@ -67,6 +67,15 @@ module Bicho
         fail "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
       end
 
+      def transform_site_url_hook(url, _logger)
+        case url.to_s
+        when 'bnc' then 'https://bugzilla.novell.com'
+        when 'bsc' then 'https://bugzilla.suse.com'
+        when 'boo' then 'https://bugzilla.opensuse.org'
+        else url
+        end
+      end
+
       def transform_api_url_hook(url, logger)
         domains = ['bugzilla.novell.com', 'bugzilla.suse.com']
         return url unless domains.map { |domain| url.host.include?(domain) }.any?
