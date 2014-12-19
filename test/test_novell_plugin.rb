@@ -28,7 +28,7 @@ EOS
   def test_oscrc_parsing
     Dir.mktmpdir do |tmp|
       fake_oscrc = File.join(tmp, 'oscrc')
-      NovellPlugin_test.write_fake_oscrc(fake_oscrc)
+      NovellPluginTest.write_fake_oscrc(fake_oscrc)
       Bicho::Plugins::Novell.oscrc_path = fake_oscrc
       plugin = Bicho::Plugins::Novell.new
       credentials = Bicho::Plugins::Novell.oscrc_credentials
