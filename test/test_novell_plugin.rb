@@ -2,16 +2,15 @@ require File.join(File.dirname(__FILE__), 'helper')
 require 'bicho/plugins/novell'
 require 'tmpdir'
 
-class NovellPlugin_test < Test::Unit::TestCase
+# Test for the plugin supporting the
+# Novell/SUSE bugzilla authentication
+class NovellPluginTest < Test::Unit::TestCase
   def test_urls_are_correct
     %w(novell suse).each do |domain|
       client = Bicho::Client.new("https://bugzilla.#{domain}.com")
       assert_raises NoMethodError do
         client.url
       end
-
-      # assert_equal "https://apibugzilla.#{domain}.com/xmlrpc.cgi", "#{client.api_url.scheme}://#{client.api_url.host}#{client.api_url.path}"
-      # assert_equal "https://bugzilla.#{domain}.com", "#{client.site_url.scheme}://#{client.site_url.host}#{client.site_url.path}"
     end
   end
 
