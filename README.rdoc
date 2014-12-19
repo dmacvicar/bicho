@@ -70,6 +70,24 @@ to set the Bicho common client:
 
 == Extending Bicho
 
+=== Plugins
+
+Plugins are classes in the module Bicho::Plugins. They can implement hooks that are
+called at different points of execution.
+
+* transform_site_url_hook
+
+  This hook is called to modify the main site url (eg: http://bugzilla.suse.com).
+  Use it when a plugin wants to provide an alternative url to a well-known bugzilla or
+  a shortcut (eg: bnc) that will be expanded into a site url.
+  Plugin order is not defined so make sure your plugin focuses in one type of shortcut
+  as another plugin can also change your returned value in their hooks.
+
+* transform_api_url_hook
+
+  The API url is derived from the site url, however some bugzilla installations may have
+  different servers or endpoints.
+
 === Commands
 
 See the +Command+ class to implement more commands.
