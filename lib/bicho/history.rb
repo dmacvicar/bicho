@@ -52,6 +52,14 @@ module Bicho
   end
 
   class ChangeSet
+
+    include Enumerable
+
+    def date
+      warn 'Deprecated. Use timestamp instead'
+      timestamp
+    end
+
     # return [Date] The date the bug activity/change happened.
     def date
       @data['when'].to_date
