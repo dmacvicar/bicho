@@ -69,9 +69,9 @@ module Bicho
 
       def transform_site_url_hook(url, _logger)
         case url.to_s
-        when 'bnc' then 'https://bugzilla.novell.com'
-        when 'bsc' then 'https://bugzilla.suse.com'
-        when 'boo' then 'https://bugzilla.opensuse.org'
+        when 'bnc', 'novell' then 'https://bugzilla.novell.com'
+        when 'bsc', 'suse' then 'https://bugzilla.suse.com'
+        when 'boo', 'opensuse' then 'https://bugzilla.opensuse.org'
         else url
         end
       end
