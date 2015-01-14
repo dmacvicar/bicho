@@ -5,7 +5,7 @@ module Bicho
 
     class User
 
-      DEFAULT_CONFIG_PATH = File.join(ENV['HOME'], '.config', 'bicho', 'config.yml')
+      DEFAULT_CONFIG_PATH = File.join(ENV['HOME'], '.config', 'bicho', 'config.yml') unless defined? DEFAULT_CONFIG_PATH
 
       class << self
         attr_writer :config_path

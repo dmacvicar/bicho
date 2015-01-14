@@ -37,8 +37,8 @@ module Bicho
     # your oscrc.
     #
     class Novell
-      OSCRC_CREDENTIALS = 'https://api.opensuse.org'
-      DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc')
+      OSCRC_CREDENTIALS = 'https://api.opensuse.org' unless defined? OSCRC_CREDENTIALS
+      DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
 
       class << self
         attr_writer :oscrc_path
