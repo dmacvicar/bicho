@@ -172,6 +172,12 @@ module Bicho
       end
     end
 
+    # Return Bugzilla API version
+    def version
+      ret = @client.call('Bugzilla.version')
+      handle_faults(ret)
+      ret["version"]
+    end
     # Search for a bug
     #
     # +query+ has to be either a +Query+ object or
