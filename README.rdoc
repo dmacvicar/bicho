@@ -68,6 +68,12 @@ to set the Bicho common client:
 
     bicho -b gnome search --help
 
+== Authentication
+
+For SUSE/Novell Bugzilla, a plugin loads the credentials from '~/.oscrc'.
+
+Otherwise, use the 'username:password@' part of the API URL.
+
 == Customizing Bicho: the user.rb plugin.
 
 Plugins are included that provide shortcuts for the most common bugzilla sites.
