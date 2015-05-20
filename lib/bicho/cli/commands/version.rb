@@ -24,23 +24,11 @@
 #++
 
 require 'bicho/cli/command'
-require 'bicho/client'
 
 module Bicho::CLI::Commands
-  class Show < ::Bicho::CLI::Command
-    options do
-      opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", :type => :string
-    end
-
-    def do(global_opts, opts, args)
-      client = ::Bicho::Client.new(global_opts[:bugzilla])
-      client.get_bugs(*args).each do |bug|
-        if opts[:format]
-          t.say(bug.format(opts[:format]))
-        else
-          t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
-        end
-      end
+  class Version < ::Bicho::CLI::Command
+    def do(_global_opts, _opts, _args)
+      t.say(Bicho::VERSION)
       0
     end
   end
