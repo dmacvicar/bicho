@@ -10,4 +10,7 @@ class History_test < Test::Unit::TestCase
     assert bug.history.size > 0
   end
 
+  def teardown
+    Bicho.client = nil
+  end
 end

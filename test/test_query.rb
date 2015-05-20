@@ -24,4 +24,8 @@ class Query_test < Test::Unit::TestCase
     ret = Bicho::Query.new.open
     assert_equal({ 'status' => [:new, :assigned, :needinfo, :reopened] }, ret.query_map)
   end
+  
+  def teardown
+    Bicho.client = nil
+  end
 end
