@@ -132,6 +132,6 @@ http://www.bugzilla.org/docs/tip/en/html/api/Bugzilla/WebService/Bug.html, I int
 
 == License
 
-Copyright (c) 2011 SUSE LINUX Products GmbH.
+Copyright (c) 2011-2015 SUSE LLC
 
 Bicho is licensed under the MIT license. See MIT-LICENSE for details.

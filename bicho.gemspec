@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://github.com/dmacvicar/bicho'
   s.summary     = 'Library to access bugzilla'
   s.description = 'Library to access bugzilla'
+  s.licenses    = ['MIT']
 
   s.add_dependency('inifile', ['~> 0.4.1'])
   s.add_dependency('trollop', ['>= 1.16'])
