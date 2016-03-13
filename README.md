@@ -100,6 +100,7 @@ bugzilla site to use when none is specified and custom aliases.
 aliases:
     mysite: http://bugzilla.site.com
 default: mysite
+```
 
 ## Extending Bicho
 
