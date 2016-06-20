@@ -75,7 +75,11 @@ EOS
   Bicho::Logging.logger.level = Logger::DEBUG if global_opts[:debug]
 
   # get the subcommand
-  cmd = ARGV.shift rescue nil
+  cmd = begin
+          ARGV.shift
+        rescue
+          nil
+        end
 
   if !cmd || !SUB_COMMANDS.include?(cmd)
     Trollop.die "available subcommands: #{SUB_COMMANDS.join(' ')}"
