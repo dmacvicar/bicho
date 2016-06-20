@@ -41,7 +41,7 @@ module Bicho
       ret = Bicho.client.search_bugs(self)
       return ret.each unless block_given?
       ret.each { |bug| yield bug }
-     end
+    end
 
     # obtains the parameter that can be passed to the XMLRPC API
     # @private
