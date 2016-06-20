@@ -8,10 +8,8 @@ extra_docs = ['README*', 'TODO*', 'CHANGELOG*']
 task default: [:test]
 
 Rake::TestTask.new do |t|
-  t.libs << File.expand_path('../test', __FILE__)
-  t.libs << File.expand_path('../', __FILE__)
-  t.test_files = FileList['test/test*.rb']
-  t.verbose = true
+  t.test_files = Dir.glob(File.join(Dir.pwd, '/test/test_*.rb'))
+  t.verbose = true if ENV['DEBUG']
 end
 
 begin
