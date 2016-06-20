@@ -177,7 +177,7 @@ module Bicho
     def version
       ret = @client.call('Bugzilla.version')
       handle_faults(ret)
-      ret["version"]
+      ret['version']
     end
 
     # Search for a bug
@@ -290,7 +290,7 @@ module Bicho
       end.flatten
 
       histories = []
-      ret = @client.call("Bug.history", params)
+      ret = @client.call('Bug.history', params)
       handle_faults(ret)
       ret['bugs'].each do |history_data|
         histories << History.new(self, history_data)
@@ -313,7 +313,7 @@ module Bicho
       end.flatten
 
       attachments = []
-      ret = @client.call("Bug.attachments",
+      ret = @client.call('Bug.attachments',
                          params.merge(exclude_fields: ['data']))
       handle_faults(ret)
       ret['bugs'].map do |_, attachments_data|

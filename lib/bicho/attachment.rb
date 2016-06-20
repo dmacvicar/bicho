@@ -63,7 +63,7 @@ module Bicho
     # @return [StringIO] attachmentdata
     # This will be loaded lazyly every time called
     def data
-      ret = @xmlrpc_client.call("Bug.attachments",
+      ret = @xmlrpc_client.call('Bug.attachments',
                                 attachment_ids: [id], include_fields: ['data'])
       @client.handle_faults(ret)
       StringIO.new(ret['attachments'][id.to_s]['data'])
