@@ -18,7 +18,8 @@ Gem::Specification.new do |s|
   s.add_dependency('nokogiri')
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('test-unit')
+  s.add_development_dependency('minitest')
+  s.add_development_dependency('minitest-reporters')
 
   s.rubyforge_project = 'bicho'
 

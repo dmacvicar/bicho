@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
-class History_test < Test::Unit::TestCase
+# Test for bug history
+class HistoryTest < Minitest::Test
 
   def test_basic_history
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')

@@ -1,9 +1,7 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
-#
 # Test getting the version of the Bugzilla API
-#
-class Version_test < Test::Unit::TestCase
+class VersionTest < Minitest::Test
   def test_version_gnome
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
 

@@ -1,7 +1,8 @@
 require_relative 'helper'
 require 'digest'
 
-class Attachments_test < Test::Unit::TestCase
+# Test for bug attachments
+class AttachmentsTest < Minitest::Test
 
   def test_client_get_attachments
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')

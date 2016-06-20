@@ -4,7 +4,7 @@ require 'tmpdir'
 
 # Test for the plugin supporting the
 # Novell/SUSE bugzilla authentication
-class NovellPluginTest < Test::Unit::TestCase
+class NovellPluginTest < Minitest::Test
   def test_urls_are_correct
     %w(novell suse).each do |domain|
       client = Bicho::Client.new("https://bugzilla.#{domain}.com")

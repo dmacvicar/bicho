@@ -4,7 +4,7 @@ require 'tmpdir'
 
 # Test for the plugin implementing user
 # preferences
-class UserPluginTest < Test::Unit::TestCase
+class UserPluginTest < Minitest::Test
 
   def self.write_fake_config(path)
     File.open(path, 'w') do |f|

@@ -1,9 +1,10 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
-class Query_test < Test::Unit::TestCase
+# Test query DSL
+class QueryTest < Minitest::Test
   def test_active_record_style
     # No client set yet
-    assert_raise RuntimeError do
+    assert_raises RuntimeError do
       Bicho::Bug.where.assigned_to('foo@bar.com').each do |bug|
         puts bug
       end
