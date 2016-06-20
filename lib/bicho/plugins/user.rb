@@ -17,9 +17,7 @@ module Bicho
 
       def initialize
         @config = {}
-        if File.exist?(Bicho::Plugins::User.config_path)
-          @config = YAML.load_file(Bicho::Plugins::User.config_path)
-        end
+        @config = YAML.load_file(Bicho::Plugins::User.config_path) if File.exist?(Bicho::Plugins::User.config_path)
       end
 
       def default_site_url_hook(logger)
