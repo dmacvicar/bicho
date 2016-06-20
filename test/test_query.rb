@@ -11,7 +11,7 @@ class Query_test < Test::Unit::TestCase
 
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
 
-    ret  = Bicho::Bug.where.product('vala').status('resolved').component('Basic Types').each.to_a
+    ret = Bicho::Bug.where.product('vala').status('resolved').component('Basic Types').each.to_a
     assert ret.collect(&:id).include?(645_150)
   end
 
@@ -24,7 +24,7 @@ class Query_test < Test::Unit::TestCase
     ret = Bicho::Query.new.open
     assert_equal({ 'status' => [:new, :assigned, :needinfo, :reopened] }, ret.query_map)
   end
-  
+
   def teardown
     Bicho.client = nil
   end

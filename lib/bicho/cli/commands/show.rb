@@ -29,7 +29,7 @@ require 'bicho/client'
 module Bicho::CLI::Commands
   class Show < ::Bicho::CLI::Command
     options do
-      opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", :type => :string
+      opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", type: :string
     end
 
     def do(global_opts, opts, args)

@@ -37,7 +37,7 @@ module Bicho
     # your oscrc.
     #
     class Novell
-      OSCRC_CREDENTIALS = 'https://api.opensuse.org' unless defined? OSCRC_CREDENTIALS
+      OSCRC_CREDENTIALS = 'https://api.opensuse.org'.freeze unless defined? OSCRC_CREDENTIALS
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
 
       class << self
@@ -64,7 +64,7 @@ module Bicho
             return { user: user, password: pass }
           end
         end
-        fail "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
+        raise "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
       end
 
       def transform_site_url_hook(url, _logger)

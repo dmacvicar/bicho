@@ -85,7 +85,7 @@ module Bicho
     # APIs
     def url
       warn 'url is deprecated. Use site_url or api_url'
-      fail NoMethodError
+      raise NoMethodError
     end
 
     # @param [String] site_url Bugzilla installation site url
@@ -104,7 +104,7 @@ module Bicho
       end
 
       # If the default url is still null, we can't continue
-      fail ArgumentError, 'missing bugzilla site' if site_url.nil?
+      raise ArgumentError, 'missing bugzilla site' if site_url.nil?
 
       @plugins.each do |pl_instance|
         if pl_instance.respond_to?(:transform_site_url_hook)
@@ -132,7 +132,7 @@ module Bicho
 
       # User.login sets the credentials cookie for subsequent calls
       if @client.user && @client.password
-        ret = @client.call('User.login',  'login' => @client.user, 'password' => @client.password, 'remember' => 0)
+        ret = @client.call('User.login', 'login' => @client.user, 'password' => @client.password, 'remember' => 0)
         handle_faults(ret)
         @userid = ret['id']
       end
@@ -178,6 +178,7 @@ module Bicho
       handle_faults(ret)
       ret["version"]
     end
+
     # Search for a bug
     #
     # +query+ has to be either a +Query+ object or
@@ -213,7 +214,7 @@ module Bicho
     # @returns [Array<String>] list of bugs
     def fetch_named_query_url(url, redirects_left)
       unless @userid
-        fail 'You need to be authenticated to use named queries'
+        raise 'You need to be authenticated to use named queries'
       end
       http = Net::HTTP.new(@api_url.host, @api_url.port)
       http.set_debug_output(Bicho::LoggerIODevice.new)
@@ -238,14 +239,14 @@ module Bicho
         end
       when Net::HTTPRedirection
         location = response['location']
-        if (redirects_left == 0)
-          fail "Maximum redirects exceeded (redirected to #{location})"
+        if redirects_left == 0
+          raise "Maximum redirects exceeded (redirected to #{location})"
         end
         new_location_uri = URI.parse(location)
         logger.debug("Moved to #{new_location_uri}")
         fetch_named_query_url(new_location_uri, redirects_left - 1)
       else
-        fail "Error when expanding named query '#{url.request_uri}': #{response}"
+        raise "Error when expanding named query '#{url.request_uri}': #{response}"
       end
     end
 

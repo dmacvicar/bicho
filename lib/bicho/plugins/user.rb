@@ -42,7 +42,6 @@ module Bicho
         end
       end
 
-
     end
 
   end

@@ -7,7 +7,7 @@ class History_test < Test::Unit::TestCase
 
     bug = Bicho.client.get_bug(645150)
 
-    assert bug.history.size > 0
+    assert !bug.history.empty?
   end
 
   def teardown

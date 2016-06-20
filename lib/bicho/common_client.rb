@@ -35,7 +35,7 @@ module Bicho
     end
 
     def self.common_client
-      @common_client || (fail 'No common client set')
+      @common_client || (raise 'No common client set')
     end
 
     def common_client

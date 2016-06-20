@@ -88,7 +88,7 @@ module Bicho
 
     # @param format_string For Kernel#sprintf; named params supplied by the bug
     def format(format_string)
-      sym_data = Hash[@data.to_a.map { |k, v| [k.to_sym, v]}]
+      sym_data = Hash[@data.to_a.map { |k, v| [k.to_sym, v] }]
       sprintf(format_string, sym_data)
     end
   end

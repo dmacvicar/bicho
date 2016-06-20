@@ -20,12 +20,12 @@ begin
     t.files   = ['lib/**/*.rb', *extra_docs]
     t.options = ['--no-private']
   end
- rescue LoadError
-   STDERR.puts 'Install yard if you want prettier docs'
-   require 'rdoc/task'
-   Rake::RDocTask.new(:doc) do |rdoc|
-     rdoc.rdoc_dir = 'doc'
-     rdoc.title = "bicho #{Bicho::VERSION}"
-     extra_docs.each { |ex| rdoc.rdoc_files.include ex }
-   end
+rescue LoadError
+  STDERR.puts 'Install yard if you want prettier docs'
+  require 'rdoc/task'
+  Rake::RDocTask.new(:doc) do |rdoc|
+    rdoc.rdoc_dir = 'doc'
+    rdoc.title = "bicho #{Bicho::VERSION}"
+    extra_docs.each { |ex| rdoc.rdoc_files.include ex }
+  end
 end

@@ -88,7 +88,7 @@ module Bicho
       end
 
       def do(_opts, _args)
-        fail RuntimeError, "No implementation for #{self.class}" if self.class =~ /CommandTemplate/
+        raise RuntimeError, "No implementation for #{self.class}" if self.class =~ /CommandTemplate/
       end
     end
   end

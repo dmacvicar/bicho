@@ -55,5 +55,5 @@ module Bicho
     [:version, :strings, 'The Version field of a bug.', true],
     [:votes, :ints, 'Searches for bugs with this many votes or greater', false],
     [:whiteboard, :strings, "Search the 'Status Whiteboard' field on bugs for a substring.", true]
-  ]
+  ].freeze
 end
