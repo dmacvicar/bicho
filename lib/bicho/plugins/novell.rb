@@ -40,16 +40,12 @@ module Bicho
       OSCRC_CREDENTIALS = 'https://api.opensuse.org'.freeze unless defined? OSCRC_CREDENTIALS
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
 
-      #class << self
-      #  attr_writer :oscrc_path
-      #end
+      class << self
+        attr_writer :oscrc_path
+      end
 
       def self.oscrc_path
         @oscrc_path ||= DEFAULT_OSCRC_PATH
-      end
-
-      def self.oscrc_path=(path)
-        @oscrc_path = path
       end
 
       def to_s
