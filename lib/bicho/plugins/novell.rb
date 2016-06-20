@@ -40,12 +40,16 @@ module Bicho
       OSCRC_CREDENTIALS = 'https://api.opensuse.org'.freeze unless defined? OSCRC_CREDENTIALS
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
 
-      class << self
-        attr_writer :oscrc_path
-      end
+      #class << self
+      #  attr_writer :oscrc_path
+      #end
 
       def self.oscrc_path
         @oscrc_path ||= DEFAULT_OSCRC_PATH
+      end
+
+      def self.oscrc_path=(path)
+        @oscrc_path = path
       end
 
       def to_s
@@ -80,16 +84,20 @@ module Bicho
         domains = ['bugzilla.novell.com', 'bugzilla.suse.com']
         return url unless domains.map { |domain| url.host.include?(domain) }.any?
 
-        auth = Novell.oscrc_credentials
+        begin
+          auth = Novell.oscrc_credentials
 
-        url = url.clone
-        url.user = auth[:user]
-        url.password = auth[:password]
-        url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
-        url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.novell.com')
-        url.scheme = 'https'
+          url = url.clone
+          url.user = auth[:user]
+          url.password = auth[:password]
+          url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
+          url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.novell.com')
+          url.scheme = 'https'
 
-        logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, 'USER:PASS')}'")
+          logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, 'USER:PASS')}'")
+        rescue StandardError => e
+          logger.warn e
+        end
         url
       end
     end

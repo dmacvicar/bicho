@@ -1,41 +1,44 @@
-require File.join(File.dirname(__FILE__), 'helper')
+require_relative 'helper'
 require 'bicho/plugins/novell'
-require 'tmpdir'
+require 'logger'
+require 'fakefs'
 
-# Test for the plugin supporting the
-# Novell/SUSE bugzilla authentication
+# Test for the plugin supporting the Novell/SUSE bugzilla authentication
 class NovellPluginTest < Minitest::Test
-  def test_urls_are_correct
+
+  def test_url_replacement
+    r, w = IO.pipe
+    log = Logger.new(w)
     %w(novell suse).each do |domain|
-      client = Bicho::Client.new("https://bugzilla.#{domain}.com")
-      assert_raises NoMethodError do
-        client.url
+      creds = { user: 'test', password: 'test' }
+      Bicho::Plugins::Novell.stub :oscrc_credentials, creds do
+        plugin = Bicho::Plugins::Novell.new
+        url = URI.parse("http://bugzilla.#{domain}.com")
+        site_url = plugin.transform_site_url_hook(url, log)
+        api_url = plugin.transform_api_url_hook(url, log)
+        assert_equal(site_url.to_s, "http://bugzilla.#{domain}.com")
+        assert_equal(api_url.to_s, 'https://test:test@apibugzilla.novell.com')
+        assert_match(/Rewrote url/, r.gets)
       end
     end
   end
 
-  def self.write_fake_oscrc(path)
-    File.open(path, 'w') do |f|
-      f.write(<<EOS)
+  def test_oscrc_parsing
+    FakeFS do
+      oscrc = <<EOS
 [https://api.opensuse.org]
 user = foo
 pass = bar
 # fake osc file
 EOS
-    end
-  end
-
-  def test_oscrc_parsing
-    Dir.mktmpdir do |tmp|
-      fake_oscrc = File.join(tmp, 'oscrc')
-      NovellPluginTest.write_fake_oscrc(fake_oscrc)
-      Bicho::Plugins::Novell.oscrc_path = fake_oscrc
-      plugin = Bicho::Plugins::Novell.new
+      FileUtils.mkdir_p File.join(ENV['HOME'])
+      File.open(File.join(ENV['HOME'], '.oscrc'), 'w') do |f|
+        f.write oscrc
+      end
       credentials = Bicho::Plugins::Novell.oscrc_credentials
-      assert_not_nil(credentials)
+      refute_nil(credentials)
       assert(credentials.key?(:user))
       assert(credentials.key?(:password))
-      Bicho::Plugins::Novell.oscrc_path = nil
     end
   end
 end
