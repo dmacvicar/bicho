@@ -3,6 +3,9 @@ require 'yaml'
 module Bicho
   module Plugins
 
+    # Plugin to get preferences from the user home directory
+    # .config/bicho/config.yml
+    #
     class User
 
       DEFAULT_CONFIG_PATH = File.join(ENV['HOME'], '.config', 'bicho', 'config.yml') unless defined? DEFAULT_CONFIG_PATH
@@ -39,8 +42,6 @@ module Bicho
           url
         end
       end
-
     end
-
   end
 end
