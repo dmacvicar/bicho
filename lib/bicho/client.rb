@@ -311,7 +311,6 @@ module Bicho
         end
       end.flatten
 
-      attachments = []
       ret = @client.call('Bug.attachments',
                          params.merge(exclude_fields: ['data']))
       handle_faults(ret)
