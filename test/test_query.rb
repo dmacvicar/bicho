@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'helper')
+require_relative 'helper'
 
 # Test query DSL
 class QueryTest < Minitest::Test

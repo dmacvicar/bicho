@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'helper')
+require_relative 'helper'
 
 # Test getting the version of the Bugzilla API
 class VersionTest < Minitest::Test
