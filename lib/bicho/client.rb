@@ -29,6 +29,7 @@ require 'nokogiri'
 require 'net/https'
 require 'cgi'
 
+require 'bicho/attachment'
 require 'bicho/bug'
 require 'bicho/history'
 require 'bicho/query'
@@ -297,5 +298,29 @@ module Bicho
       histories
     end
 
+    # @return [Array<Attachment>] a list of attachments for the
+    # given bugs.
+    #
+    # Payload is lazy-loaded
+    def get_attachments(*ids)
+      params = {}
+      params[:ids] = ids.collect(&:to_s).map do |what|
+        if what =~ /^[0-9]+$/
+          next what.to_i
+        else
+          next expand_named_query(what)
+        end
+      end.flatten
+
+      attachments = []
+      ret = @client.call("Bug.attachments",
+                         params.merge(exclude_fields: ['data']))
+      handle_faults(ret)
+      ret['bugs'].map do |_, attachments_data|
+        attachments_data.map do |attachment_data|
+          Attachment.new(self, @client, attachment_data)
+        end
+      end.flatten
+    end
   end
 end

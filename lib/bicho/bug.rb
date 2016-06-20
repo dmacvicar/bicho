@@ -86,6 +86,11 @@ module Bicho
       @client.get_history(id).first
     end
 
+    # @return [Array<Attachment>] attachments for this bug
+    def attachments
+      @client.get_attachments(id)
+    end
+
     # @param format_string For Kernel#sprintf; named params supplied by the bug
     def format(format_string)
       sym_data = Hash[@data.to_a.map { |k, v| [k.to_sym, v] }]
