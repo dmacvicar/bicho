@@ -145,7 +145,7 @@ module Bicho
       plugin_glob = File.join(File.dirname(__FILE__), 'plugins', '*.rb')
       Dir.glob(plugin_glob).each do |plugin|
         logger.debug("Loading file: #{plugin}")
-        load plugin
+        require plugin
       end
     end
 
