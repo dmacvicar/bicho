@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
   s.add_dependency('highline', ['~> 1.6.2'])
   s.add_dependency('nokogiri')
 
+  s.add_development_dependency('rake')
+
   s.rubyforge_project = 'bicho'
 
   s.files         = `git ls-files`.split("\n")
