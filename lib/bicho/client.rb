@@ -152,7 +152,6 @@ module Bicho
     # instantiate all plugin classes in the Bicho::Plugins
     # module and add them to the list of known plugins
     def instantiate_plugins!
-      # instantiate plugins
       ::Bicho::Plugins.constants.each do |cnt|
         pl_class = ::Bicho::Plugins.const_get(cnt)
         pl_instance = pl_class.new
