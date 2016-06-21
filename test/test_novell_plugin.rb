@@ -1,7 +1,6 @@
 require_relative 'helper'
 require 'bicho/plugins/novell'
 require 'logger'
-require 'fakefs'
 
 # Test for the plugin supporting the Novell/SUSE bugzilla authentication
 class NovellPluginTest < Minitest::Test
@@ -24,17 +23,21 @@ class NovellPluginTest < Minitest::Test
   end
 
   def test_oscrc_parsing
-    FakeFS do
-      oscrc = <<EOS
+    oscrc = <<EOS
 [https://api.opensuse.org]
 user = foo
 pass = bar
 # fake osc file
 EOS
-      FileUtils.mkdir_p File.join(ENV['HOME'])
-      File.open(File.join(ENV['HOME'], '.oscrc'), 'w') do |f|
-        f.write oscrc
+    fake_read = proc do |path|
+      if path == Bicho::Plugins::Novell.oscrc_path
+        oscrc
+      else
+        File.read(path)
       end
+    end
+
+    File.stub :read, fake_read do
       credentials = Bicho::Plugins::Novell.oscrc_credentials
       refute_nil(credentials)
       assert(credentials.key?(:user))
