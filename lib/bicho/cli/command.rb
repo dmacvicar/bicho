@@ -78,8 +78,8 @@ module Bicho
       # with current ARGV
       def parse_options
         self.class.parser = Trollop::Parser.new unless self.class.parser
-        opts = Trollop.with_standard_exception_handling(self.class.parser) do
-          o = self.class.parser.parse ARGV
+        Trollop.with_standard_exception_handling(self.class.parser) do
+          self.class.parser.parse ARGV
         end
       end
 
