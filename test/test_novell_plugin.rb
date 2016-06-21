@@ -4,7 +4,6 @@ require 'logger'
 
 # Test for the plugin supporting the Novell/SUSE bugzilla authentication
 class NovellPluginTest < Minitest::Test
-
   def test_url_replacement
     r, w = IO.pipe
     log = Logger.new(w)
@@ -40,6 +39,5 @@ EOS
         assert(credentials.key?(:password))
       end
     end
-
   end
 end
