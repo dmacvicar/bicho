@@ -29,19 +29,17 @@ user = foo
 pass = bar
 # fake osc file
 EOS
-    fake_read = proc do |path|
-      if path == Bicho::Plugins::Novell.oscrc_path
-        oscrc
-      else
-        File.read(path)
+
+    Dir.mktmpdir do |tmp|
+      fake_oscrc = File.join(tmp, '.oscrc')
+      File.write(fake_oscrc, oscrc)
+      Bicho::Plugins::Novell.stub :oscrc_path, fake_oscrc do
+        credentials = Bicho::Plugins::Novell.oscrc_credentials
+        refute_nil(credentials)
+        assert(credentials.key?(:user))
+        assert(credentials.key?(:password))
       end
     end
 
-    File.stub :read, fake_read do
-      credentials = Bicho::Plugins::Novell.oscrc_credentials
-      refute_nil(credentials)
-      assert(credentials.key?(:user))
-      assert(credentials.key?(:password))
-    end
   end
 end
