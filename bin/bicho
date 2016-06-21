@@ -92,7 +92,7 @@ EOS
   opts = cmd_instance.parse_options
 
   ret = cmd_instance.do(global_opts, opts, ARGV)
-rescue Exception => e
+rescue StandardError => e
   Bicho::Logging.logger.error e.message
   Bicho::Logging.logger.error e.backtrace
   t.say("#{t.color('ERROR: ', :error)} #{t.color(e.message, :bold)}")
