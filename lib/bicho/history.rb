@@ -52,7 +52,6 @@ module Bicho
   end
 
   class ChangeSet
-
     include Enumerable
 
     # return [Date] The date the bug activity/change happened.

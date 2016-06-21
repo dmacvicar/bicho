@@ -6,7 +6,6 @@ module Bicho
     # .config/bicho/config.yml
     #
     class User
-
       DEFAULT_CONFIG_PATH = File.join(ENV['HOME'], '.config', 'bicho', 'config.yml') unless defined? DEFAULT_CONFIG_PATH
 
       class << self

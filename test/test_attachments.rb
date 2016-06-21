@@ -3,7 +3,6 @@ require 'digest'
 
 # Test for bug attachments
 class AttachmentsTest < Minitest::Test
-
   def test_client_get_attachments
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
 

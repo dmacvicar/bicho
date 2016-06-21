@@ -2,7 +2,6 @@ require_relative 'helper'
 
 # Test for bug history
 class HistoryTest < Minitest::Test
-
   def test_basic_history
     Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
 

@@ -31,7 +31,6 @@ module Bicho::CLI::Commands
   # command that shows the history colored as a
   # changelog
   class History < ::Bicho::CLI::Command
-
     def do(global_opts, _opts, args)
       client = ::Bicho::Client.new(global_opts[:bugzilla])
       client.get_history(*args).each do |history|
