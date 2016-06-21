@@ -1,6 +1,5 @@
 module Bicho
   module Plugins
-
     class Aliases
       def transform_site_url_hook(url, _logger)
         case url.to_s
@@ -11,6 +10,5 @@ module Bicho
         end
       end
     end
-
   end
 end

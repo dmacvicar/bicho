@@ -2,7 +2,6 @@ require 'yaml'
 
 module Bicho
   module Plugins
-
     # Plugin to get preferences from the user home directory
     # .config/bicho/config.yml
     #

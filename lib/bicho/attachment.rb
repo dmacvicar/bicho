@@ -25,7 +25,6 @@
 require 'stringio'
 
 module Bicho
-
   class Attachment
     attr_reader :props
 
@@ -69,5 +68,4 @@ module Bicho
       StringIO.new(ret['attachments'][id.to_s]['data'])
     end
   end
-
 end
