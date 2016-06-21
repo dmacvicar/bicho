@@ -1,1 +1,45 @@
-inherit_from: .rubocop_todo.yml
+Metrics/AbcSize:
+  Enabled: false
+  Max: 41
+
+Metrics/ClassLength:
+  Enabled: false
+  Max: 182
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+  Max: 11
+
+# Offense count: 49
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 356
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    # CLI plugins
+    - 'lib/bicho/cli/commands/*.rb'
+    - 'lib/bicho/client.rb'
+
+Style/GuardClause:
+  Exclude:
+    - 'lib/bicho/client.rb'
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: snake_case, camelCase
+Style/MethodName:
+  Exclude:
+    # L3 method
+    - 'lib/bicho/query.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+Style/NumericLiterals:
+  MinDigits: 7
