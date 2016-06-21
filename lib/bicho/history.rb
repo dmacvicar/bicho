@@ -55,13 +55,15 @@ module Bicho
 
     include Enumerable
 
+    # return [Date] The date the bug activity/change happened.
+    # @deprecated Use {#timestamp} instead
     def date
       warn 'Deprecated. Use timestamp instead'
       timestamp
     end
 
     # return [Date] The date the bug activity/change happened.
-    def date
+    def timestamp
       @data['when'].to_date
     end
 
@@ -98,7 +100,10 @@ module Bicho
 
     # iterate over each changeset
     def each
-      changesets.each
+      return enum_for(:each) unless block_given?
+      changesets.each do |c|
+        yield c
+      end
     end
 
     # @return [Fixnum] number of changesets

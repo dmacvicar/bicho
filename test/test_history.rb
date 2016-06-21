@@ -8,7 +8,13 @@ class HistoryTest < Minitest::Test
 
     bug = Bicho.client.get_bug(645150)
 
-    assert !bug.history.empty?
+    history = bug.history
+
+    assert !history.empty?
+
+    history.each do |c|
+      assert c.timestamp.to_time.to_i > 0
+    end
   end
 
   def teardown
