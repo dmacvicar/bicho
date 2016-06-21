@@ -25,6 +25,7 @@
 require 'stringio'
 
 module Bicho
+  # Represents an attachment object for a given bug
   class Attachment
     attr_reader :props
 

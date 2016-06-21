@@ -3,6 +3,7 @@
 
 require 'logger'
 
+# Utility class to color output.
 class Logger
   module Colors
     VERSION = '1.0.0'.freeze
@@ -30,9 +31,7 @@ class Logger
       STDERR => %w(nothing green yellow light_red light_purple light_cyan)
     }.freeze
   end
-end
 
-class Logger
   alias format_message_colorless format_message
 
   def format_message(level, *args)

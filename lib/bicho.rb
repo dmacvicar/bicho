@@ -29,6 +29,7 @@ require 'bicho/logging'
 require 'bicho/client'
 require 'bicho/bug'
 
+# All classes of the Bicho library belong to this module.
 module Bicho
   SEARCH_FIELDS = [
     # name, type, description, multi

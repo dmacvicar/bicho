@@ -26,6 +26,7 @@ require 'logger'
 require 'bicho/ext/logger_colors'
 
 module Bicho
+  # All logging related classes go into this module.
   module Logging
     class << self
       attr_writer :logger

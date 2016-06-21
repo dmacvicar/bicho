@@ -25,6 +25,9 @@
 require 'stringio'
 
 module Bicho
+  # Represents a single change inside a bug.
+  # History has multiple ChangeSets, and they have
+  # multiple changes.
   class Change
     def field_name
       @data['field_name']
@@ -51,6 +54,7 @@ module Bicho
     end
   end
 
+  # A collection of related changes.
   class ChangeSet
     include Enumerable
 

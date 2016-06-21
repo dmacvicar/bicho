@@ -24,6 +24,7 @@
 #++
 require 'logger'
 
+# All classes go into this module.
 module Bicho
   # This module allows the [Bug] and other
   # classes to offer an ActiveRecord like query

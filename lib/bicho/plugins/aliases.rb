@@ -1,5 +1,6 @@
 module Bicho
   module Plugins
+    # This plugin allows to specify shortcuts for bugzilla urls
     class Aliases
       def transform_site_url_hook(url, _logger)
         case url.to_s

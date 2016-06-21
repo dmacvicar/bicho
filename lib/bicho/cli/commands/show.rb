@@ -27,6 +27,7 @@ require 'bicho/cli/command'
 require 'bicho/client'
 
 module Bicho::CLI::Commands
+  # Command to display bug information.
   class Show < ::Bicho::CLI::Command
     options do
       opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", type: :string

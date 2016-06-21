@@ -1,6 +1,7 @@
 require 'bicho/query'
 
 module Bicho
+  # A single bug inside a bugzilla instance.
   class Bug
     # ActiveRecord like interface
     #

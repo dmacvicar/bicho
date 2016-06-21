@@ -26,6 +26,7 @@
 require 'bicho/cli/command'
 
 module Bicho::CLI::Commands
+  # Command to display Bicho's version.
   class Version < ::Bicho::CLI::Command
     def do(_global_opts, _opts, _args)
       t.say(Bicho::VERSION)

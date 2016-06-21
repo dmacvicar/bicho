@@ -30,6 +30,7 @@ require 'bicho/query'
 require 'pp'
 
 module Bicho::CLI::Commands
+  # Command to search for bugs.
   class Search < ::Bicho::CLI::Command
     options do
       # add all fields as command line options of this command

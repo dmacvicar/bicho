@@ -55,6 +55,7 @@ class XMLRPC::Client
 end
 
 module Bicho
+  # Plugins are defined inside this module
   module Plugins
   end
 
