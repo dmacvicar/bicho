@@ -92,9 +92,7 @@ module Bicho
     #
     # @private
     def append_query(param, value)
-      unless @query_map.key?(param)
-        @query_map[param] = []
-      end
+      @query_map[param] = [] unless @query_map.key?(param)
       @query_map[param] = [@query_map[param], value].flatten
     end
   end

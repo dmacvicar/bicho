@@ -127,9 +127,7 @@ module Bicho
 
     # @return [String] The numeric id of the bug
     def bug
-      unless @bug
-        @bug = @client.get_bug(@data['id'])
-      end
+      @bug = @client.get_bug(@data['id']) unless @bug
       @bug
     end
 

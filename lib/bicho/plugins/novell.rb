@@ -60,9 +60,7 @@ module Bicho
           next unless oscrc.has_section?(section)
           user = oscrc[section]['user']
           pass = oscrc[section]['pass']
-          if user && pass
-            return { user: user, password: pass }
-          end
+          return { user: user, password: pass } if user && pass
         end
         raise "No valid .oscrc credentials for Novell/SUSE bugzilla (#{oscrc_path})"
       end

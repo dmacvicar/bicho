@@ -213,9 +213,7 @@ module Bicho
     # @private
     # @returns [Array<String>] list of bugs
     def fetch_named_query_url(url, redirects_left)
-      unless @userid
-        raise 'You need to be authenticated to use named queries'
-      end
+      raise 'You need to be authenticated to use named queries' unless @userid
       http = Net::HTTP.new(@api_url.host, @api_url.port)
       http.set_debug_output(Bicho::LoggerIODevice.new)
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
