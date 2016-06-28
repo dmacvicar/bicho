@@ -32,6 +32,7 @@ module Bicho::CLI::Commands
     options do
       opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", type: :string
       opt :attachments, "Show attachments"
+      opt :supportconfig, "Download supportconfig attachments (only if --attachments is given)"
     end
 
     def do(global_opts, opts, args)
@@ -42,7 +43,26 @@ module Bicho::CLI::Commands
         elsif opts[:attachments]
           t.say("Bug #{t.color(bug.id.to_s, :headline)} has #{bug.attachments.size} attachments")
           bug.attachments.each do |attachment|
-            t.say(" #{attachment.id} (#{attachment.content_type}) #{attachment.summary}")
+            if opts[:supportconfig]
+              # check for supportconfigs
+              if (attachment.content_type == "application/x-gzip" || attachment.content_type == "application/x-bzip-compressed-tar") &&
+                attachment.summary =~ /supportconfig/i
+                filename = "bsc#{bug.id}-#{attachment.id}-#{attachment.props['file_name']}"
+                t.say("Downloading to #{t.color(filename, :even_row)}")
+                begin
+                  data = attachment.data
+                  File.open(filename, 'w') do |f|
+                    f.write data.read
+                  end
+                rescue Exception => e
+                  t.say("#{t.color("Error:", :error)} Download of #{filename} failed: #{e}")
+                  raise
+                end
+              end
+            else
+              # no download, just show
+              t.say(" #{attachment.id} (#{attachment.props['file_name']}:#{attachment.content_type}) #{attachment.summary}")
+            end
           end
         else
           t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
