@@ -31,6 +31,7 @@ module Bicho::CLI::Commands
   class Show < ::Bicho::CLI::Command
     options do
       opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", type: :string
+      opt :attachments, "Show attachments"
     end
 
     def do(global_opts, opts, args)
@@ -38,6 +39,11 @@ module Bicho::CLI::Commands
       client.get_bugs(*args).each do |bug|
         if opts[:format]
           t.say(bug.format(opts[:format]))
+        elsif opts[:attachments]
+          t.say("Bug #{t.color(bug.id.to_s, :headline)} has #{bug.attachments.size} attachments")
+          bug.attachments.each do |attachment|
+            t.say(" #{attachment.id} (#{attachment.content_type}) #{attachment.summary}")
+          end
         else
           t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
         end
