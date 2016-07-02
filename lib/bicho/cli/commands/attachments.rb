@@ -28,18 +28,45 @@ require 'bicho/client'
 
 module Bicho::CLI::Commands
   # Command to display bug information.
-  class Show < ::Bicho::CLI::Command
+  class Attachments < ::Bicho::CLI::Command
+    private
+
+    # check for supportconfigs and download
+    def download(bug, supportconfig_only)
+      bug.attachments.each do |attachment|
+        filename = "bsc#{bug.id}-#{attachment.id}-#{attachment.props['file_name']}"
+        if supportconfig_only
+          next unless attachment.content_type == 'application/x-gzip' ||
+                      attachment.content_type == 'application/x-bzip-compressed-tar'
+          next unless attachment.summary =~ /supportconfig/i
+        end
+        t.say("Downloading to #{t.color(filename, :even_row)}")
+        begin
+          data = attachment.data
+          File.open(filename, 'w') do |f|
+            f.write data.read
+          end
+        rescue StandardError => e
+          t.say("#{t.color('Error:', :error)} Download of #{filename} failed: #{e}")
+          raise
+        end
+      end
+    end
+
+    public
+
     options do
-      opt :format, "Format string, eg. '%{id}:%{priority}:%{summary}'", type: :string
+      opt :download, 'Download attachments'
+      opt :supportconfig, 'Only download supportconfig attachments'
     end
 
     def do(global_opts, opts, args)
       client = ::Bicho::Client.new(global_opts[:bugzilla])
       client.get_bugs(*args).each do |bug|
-        if opts[:format]
-          t.say(bug.format(opts[:format]))
+        if opts[:download]
+          download(bug, opts[:supportconfig])
         else
-          t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
+          t.say("Bug #{t.color(bug.id.to_s, :headline)} has #{bug.attachments.size} attachments")
         end
       end
       0
