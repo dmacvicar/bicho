@@ -85,7 +85,7 @@ module Bicho
           url.user = auth[:user]
           url.password = auth[:password]
           url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
-          url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.novell.com')
+          url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.suse.com')
           url.scheme = 'https'
 
           logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, 'USER:PASS')}'")
