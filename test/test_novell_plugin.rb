@@ -15,7 +15,7 @@ class NovellPluginTest < Minitest::Test
         site_url = plugin.transform_site_url_hook(url, log)
         api_url = plugin.transform_api_url_hook(url, log)
         assert_equal(site_url.to_s, "http://bugzilla.#{domain}.com")
-        assert_equal(api_url.to_s, 'https://test:test@apibugzilla.novell.com')
+        assert_equal(api_url.to_s, "https://test:test@apibugzilla.#{domain}.com")
         assert_match(/Rewrote url/, r.gets)
       end
     end
