@@ -62,11 +62,18 @@ module Bicho
     # Query responds to all the bug search attributes.
     #
     # @see {Bug.where Allowed attributes}
-    def method_missing(name, *args)
+    def method_missing(method_name, *args)
+      return super unless Bicho::SEARCH_FIELDS
+                          .map(&:first)
+                          .include?(method_name)
       args.each do |arg|
-        append_query(name.to_s, arg)
+        append_query(method_name.to_s, arg)
       end
       self
+    end
+
+    def respond_to_missing?(method_name, _include_private = false)
+      Bicho::SEARCH_FIELDS.map(&:first).include?(method_name) || super
     end
 
     # Shortcut equivalent to status new, assigned, needinfo and reopened

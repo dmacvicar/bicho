@@ -56,8 +56,13 @@ module Bicho
       @data = data
     end
 
-    def method_missing(name, *_args)
-      @data[name.to_s]
+    def method_missing(method_name, *_args)
+      return super unless @data.key?(method_name.to_s)
+      @data[method_name.to_s]
+    end
+
+    def respond_to_missing?(method_name, _include_private = false)
+      @data.key?(method_name.to_s) || super
     end
 
     def id
