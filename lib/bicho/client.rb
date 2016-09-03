@@ -238,7 +238,7 @@ module Bicho
         end
       when Net::HTTPRedirection
         location = response['location']
-        if redirects_left == 0
+        if redirects_left.zero?
           raise "Maximum redirects exceeded (redirected to #{location})"
         end
         new_location_uri = URI.parse(location)
