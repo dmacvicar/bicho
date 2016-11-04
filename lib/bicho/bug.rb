@@ -97,6 +97,14 @@ module Bicho
       @client.get_attachments(id)
     end
 
+    # Add an attachment to the bug
+    # For the params description, see the Client.add_attachment method.
+    #
+    # @return [ID] of the new attachment
+    def add_attachment(summary, file, **kwargs)
+      @client.add_attachment(summary, file, id, **kwargs).first
+    end
+
     # @param format_string For Kernel#sprintf; named params supplied by the bug
     def format(format_string)
       sym_data = Hash[@data.to_a.map { |k, v| [k.to_sym, v] }]
