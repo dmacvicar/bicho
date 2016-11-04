@@ -180,6 +180,27 @@ module Bicho
       ret['version']
     end
 
+    # Create a bug
+    #
+    # @param product - the name of the product the bug is being filed against
+    # @param component - the name of a component in the product above.
+    # @param summary - a brief description of the bug being filed.
+    # @param version - version of the product above; the version the bug was found in.
+    # @param **kwargs - keyword-args containing optional/defaulted params
+    #
+    # Return the new bug ID
+    def create_bug(product, component, summary, version, **kwargs)
+      params = {}
+      params = params.merge(kwargs)
+      params[:product] = product
+      params[:component] = component
+      params[:summary] = summary
+      params[:version] = version
+      ret = @client.call('Bug.create', params)
+      handle_faults(ret)
+      ret['id']
+    end
+
     # Search for a bug
     #
     # +query+ has to be either a +Query+ object or
