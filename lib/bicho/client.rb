@@ -319,5 +319,36 @@ module Bicho
         end
       end.flatten
     end
+
+    # Add an attachment to bugs with given ids
+    #
+    # Params:
+    # @param summary - a short string describing the attachment
+    # @param file - [File] object to attach
+    # @param *ids - a list of bug ids to which the attachment will be added
+    # @param **kwargs - optional keyword-args that may contain:
+    #  - content_type - content type of the attachment (if ommited,
+    #  'application/octet-stream' will be used)
+    #  - file_name - name of the file (if ommited, the base name of the
+    #  provided file will be used)
+    #  - patch? - flag saying that the attachment is a patch
+    #  - private? - flag saying that the attachment is private
+    #  - comment
+    #
+    # @return [Array<ID>] a list of the attachment id(s) created.
+    def add_attachment(summary, file, *ids, **kwargs)
+      params = {}
+      params[:ids] = ids
+      params[:summary] = summary
+      params[:content_type] = kwargs.fetch(:content_type, 'application/octet-stream')
+      params[:file_name] = kwargs.fetch(:file_name, File.basename(file))
+      params[:is_patch] = kwargs[:patch?] if kwargs[:patch?]
+      params[:is_private] = kwargs[:private?] if kwargs[:private?]
+      params[:comment] = kwargs[:comment] if kwargs[:comment]
+      params[:data] = XMLRPC::Base64.new(file.read)
+      ret = @client.call('Bug.add_attachment', params)
+      handle_faults(ret)
+      ret['ids']
+    end
   end
 end
