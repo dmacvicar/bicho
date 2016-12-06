@@ -91,6 +91,8 @@ module Bicho
     end
 
     # @param [String] site_url Bugzilla installation site url
+    # @param [String] username Bugzilla account username
+    # @param [String] password Bugzilla account password
     def initialize(site_url, username=nil, password=nil)
       @plugins = []
       load_plugins!
