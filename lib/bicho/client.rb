@@ -132,7 +132,7 @@ module Bicho
       password ||= ENV['bz_password']
 
       @client = XMLRPC::Client.new_from_hash(host: @api_url.hostname,
-                                             port: 443,
+                                             port: @api_url.port,
                                              use_ssl: true,
                                              user: username,
                                              password: password,
