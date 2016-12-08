@@ -91,9 +91,7 @@ module Bicho
     end
 
     # @param [String] site_url Bugzilla installation site url
-    # @param [String] username Bugzilla account username
-    # @param [String] password Bugzilla account password
-    def initialize(site_url, username=nil, password=nil)
+    def initialize(site_url, username = nil, password = nil)
       @plugins = []
       load_plugins!
       instantiate_plugins!
@@ -124,7 +122,7 @@ module Bicho
 
       @plugins.each do |pl_instance|
         # Modify API url
-        if pl_instance.respond_to?(:transform_api_url_hoot)
+        if pl_instance.respond_to?(:transform_api_url_hook)
           api_url = pl_instance.transform_api_url_hook(api_url, logger)
         end
       end
