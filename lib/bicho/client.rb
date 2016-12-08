@@ -91,7 +91,7 @@ module Bicho
     end
 
     # @param [String] site_url Bugzilla installation site url
-    def initialize(site_url, username=nil, password=nil)
+    def initialize(site_url, username = nil, password = nil)
       @plugins = []
       load_plugins!
       instantiate_plugins!
@@ -128,17 +128,17 @@ module Bicho
       end
 
       @api_url = api_url.is_a?(URI) ? api_url.clone : URI.parse(api_url)
-      username = username ||= ENV['bz_username']
-      password = password ||= ENV['bz_password']
+      username ||= ENV['bz_username']
+      password ||= ENV['bz_password']
 
-      @client = XMLRPC::Client.new_from_hash({ host: @api_url.hostname,
-                                               port: 443,
-                                               use_ssl: true,
-                                               user: username,
-                                               password: password,
-                                               path: '/xmlrpc.cgi',
-                                               proxy_host: nil,
-                                               timeout: 900})
+      @client = XMLRPC::Client.new_from_hash(host: @api_url.hostname,
+                                             port: 443,
+                                             use_ssl: true,
+                                             user: username,
+                                             password: password,
+                                             path: '/xmlrpc.cgi',
+                                             proxy_host: nil,
+                                             timeout: 900)
       @client.set_debug
 
       # User.login sets the credentials cookie for subsequent calls
