@@ -23,7 +23,7 @@ class QueryTest < Minitest::Test
 
   def test_query_shortcuts
     ret = Bicho::Query.new.open
-    assert_equal({ 'status' => [:new, :assigned, :needinfo, :reopened] }, ret.query_map)
+    assert_equal({ 'status' => [:new, :assigned, :needinfo, :reopened, :confirmed, :in_progress] }, ret.query_map)
   end
 
   def teardown
