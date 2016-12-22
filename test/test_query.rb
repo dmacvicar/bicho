@@ -2,7 +2,6 @@ require_relative 'helper'
 
 # Test query DSL
 class QueryTest < Minitest::Test
-
   def setup
     Bicho.client = nil
   end
