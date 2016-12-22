@@ -2,6 +2,11 @@ require_relative 'helper'
 
 # Test query DSL
 class QueryTest < Minitest::Test
+
+  def setup
+    Bicho.client = nil
+  end
+
   def test_active_record_style
     # No client set yet
     assert_raises RuntimeError do
