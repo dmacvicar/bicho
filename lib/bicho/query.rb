@@ -76,9 +76,9 @@ module Bicho
       Bicho::SEARCH_FIELDS.map(&:first).include?(method_name) || super
     end
 
-    # Shortcut equivalent to status new, assigned, needinfo and reopened
+    # Shortcut equivalent to status new, assigned, needinfo, reopened, confirmed, and in_progress
     def open
-      status(:new).status(:assigned).status(:needinfo).status(:reopened)
+      status(:new).status(:assigned).status(:needinfo).status(:reopened).status(:confirmed).status(:in_progress)
     end
 
     # Shortcut, equivalent to
