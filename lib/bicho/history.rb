@@ -89,7 +89,7 @@ module Bicho
 
     def to_s
       buffer = StringIO.new
-      buffer << "#{date}- #{who}\n"
+      buffer << "#{timestamp}- #{who}\n"
       changes.each do |diff|
         buffer << "#{diff}\n"
       end
