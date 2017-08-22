@@ -18,10 +18,8 @@ class ReportsTest < Minitest::Test
     )
 
     ranges = Bicho::Reports.ranges_with_statuses(bug, 'NEEDINFO', 'RESOLVED')
-    assert_equal(
-      Time.parse('2005-12-31 21:56:36 UTC')..Time.parse('2006-04-11 19:22:41 UTC'), ranges[0])
-    assert_equal(
-      Time.parse('2006-04-11 19:22:41 UTC'), ranges[1].begin)
+    assert_equal(Time.parse('2005-12-31 21:56:36 UTC')..Time.parse('2006-04-11 19:22:41 UTC'), ranges[0])
+    assert_equal(Time.parse('2006-04-11 19:22:41 UTC'), ranges[1].begin)
     assert(Time.now - ranges[1].end < 60)
   end
 end

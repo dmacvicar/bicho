@@ -101,7 +101,7 @@ module Bicho
     end
 
     def to_h
-      { who: who, timestamp: timestamp, changes: changes.map { |c| c.to_h } }
+      { who: who, timestamp: timestamp, changes: changes.map(&:to_h) }
     end
   end
 

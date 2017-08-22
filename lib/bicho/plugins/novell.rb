@@ -39,8 +39,8 @@ module Bicho
     class Novell
       OSCRC_CREDENTIALS = 'https://api.opensuse.org'.freeze unless defined? OSCRC_CREDENTIALS
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
-      DOMAINS = ['bugzilla.novell.com', 'bugzilla.suse.com']
-      XMLRPC_DOMAINS = ['apibugzilla.novell.com', 'apibugzilla.suse.com']
+      DOMAINS = ['bugzilla.novell.com', 'bugzilla.suse.com'].freeze
+      XMLRPC_DOMAINS = ['apibugzilla.novell.com', 'apibugzilla.suse.com'].freeze
 
       class << self
         attr_writer :oscrc_path

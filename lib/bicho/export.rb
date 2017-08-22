@@ -7,7 +7,7 @@ module Bicho
     # calculated attributes.
     def self.to_json(bug)
       bug_h = bug.to_h
-      bug_h['history'] = bug.history.changesets.map{|cs| cs.to_h }
+      bug_h['history'] = bug.history.changesets.map(&:to_h)
       bug_h['resolution_time'] = Bicho::Reports.resolution_time(bug)
       JSON.generate(bug_h)
     end

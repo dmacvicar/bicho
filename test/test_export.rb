@@ -1,6 +1,6 @@
 require_relative 'helper'
 
-BUG_ES_EXPORT=<<-EOF
+BUG_ES_EXPORT = <<-EOF.freeze
 {
   "priority": "Normal",
   "blocks": [
