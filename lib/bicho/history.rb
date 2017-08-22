@@ -67,7 +67,7 @@ module Bicho
 
     # return [Date] The date the bug activity/change happened.
     def timestamp
-      @data['when'].to_date
+      @data['when'].to_time
     end
 
     # @return [String] The login name of the user who performed the bug change

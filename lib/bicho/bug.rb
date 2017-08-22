@@ -58,7 +58,12 @@ module Bicho
 
     def method_missing(method_name, *_args)
       return super unless @data.key?(method_name.to_s)
-      @data[method_name.to_s]
+      value = @data[method_name.to_s]
+      if value.is_a?(XMLRPC::DateTime)
+        value.to_time
+      else
+        value
+      end
     end
 
     def respond_to_missing?(method_name, _include_private = false)
