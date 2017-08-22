@@ -52,6 +52,10 @@ module Bicho
       @client = client
       @data = data
     end
+
+    def to_h
+      @data
+    end
   end
 
   # A collection of related changes.
@@ -94,6 +98,10 @@ module Bicho
         buffer << "#{diff}\n"
       end
       buffer.string
+    end
+
+    def to_h
+      { who: who, timestamp: timestamp, changes: changes.map { |c| c.to_h } }
     end
   end
 

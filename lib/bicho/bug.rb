@@ -58,12 +58,7 @@ module Bicho
 
     def method_missing(method_name, *_args)
       return super unless @data.key?(method_name.to_s)
-      value = @data[method_name.to_s]
-      if value.is_a?(XMLRPC::DateTime)
-        value.to_time
-      else
-        value
-      end
+      self[method_name]
     end
 
     def respond_to_missing?(method_name, _include_private = false)
@@ -81,9 +76,13 @@ module Bicho
     end
 
     def [](name, subname = nil)
-      v = @data[name.to_s]
-      v = v[subname.to_s] if subname # for 'internals' properties
-      v
+      value = @data[name.to_s]
+      value = value[subname.to_s] if subname # for 'internals' properties
+      if value.is_a?(XMLRPC::DateTime)
+        value.to_time
+      else
+        value
+      end
     end
 
     # URL where the bug can be viewed
@@ -114,6 +113,11 @@ module Bicho
     def format(format_string)
       sym_data = Hash[@data.to_a.map { |k, v| [k.to_sym, v] }]
       Kernel.format(format_string, sym_data)
+    end
+
+    # @return [Hash]
+    def to_h
+      Hash[@data.to_a.map { |k, _| [k.to_sym, self[k.to_sym]] }]
     end
   end
 end

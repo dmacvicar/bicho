@@ -29,6 +29,7 @@ require 'bicho/logging'
 require 'bicho/client'
 require 'bicho/bug'
 require 'bicho/reports'
+require 'bicho/export'
 
 # All classes of the Bicho library belong to this module.
 module Bicho
