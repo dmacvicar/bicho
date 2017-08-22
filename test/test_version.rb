@@ -11,7 +11,7 @@ class VersionTest < Minitest::Test
   end
 
   def test_version_suse
-    Bicho.client = Bicho::Client.new('https://bugzilla.suse.com')
+    Bicho.client = Bicho::Client.new('https://bugzilla.opensuse.org')
 
     ret = Bicho.client.version
     # https://bugzilla.suse.com is at 4.4.6 as of Jan/2015
