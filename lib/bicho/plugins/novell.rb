@@ -39,6 +39,8 @@ module Bicho
     class Novell
       OSCRC_CREDENTIALS = 'https://api.opensuse.org'.freeze unless defined? OSCRC_CREDENTIALS
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
+      DOMAINS = ['bugzilla.novell.com', 'bugzilla.suse.com']
+      XMLRPC_DOMAINS = ['apibugzilla.novell.com', 'apibugzilla.suse.com']
 
       class << self
         attr_writer :oscrc_path
@@ -75,24 +77,30 @@ module Bicho
       end
 
       def transform_api_url_hook(url, logger)
-        domains = ['bugzilla.novell.com', 'bugzilla.suse.com']
-        return url unless domains.map { |domain| url.host.include?(domain) }.any?
+        return url unless DOMAINS.map { |domain| url.host.include?(domain) }.any?
 
         begin
-          auth = Novell.oscrc_credentials
-
           url = url.clone
-          url.user = auth[:user]
-          url.password = auth[:password]
           url.host = url.host.gsub(/bugzilla\.novell.com/, 'apibugzilla.novell.com')
           url.host = url.host.gsub(/bugzilla\.suse.com/, 'apibugzilla.suse.com')
           url.scheme = 'https'
 
-          logger.debug("#{self} : Rewrote url to '#{url.to_s.gsub(/#{url.user}:#{url.password}/, 'USER:PASS')}'")
+          logger.debug("#{self} : Rewrote url to '#{url}'")
         rescue StandardError => e
           logger.warn e
         end
         url
+      end
+
+      def transform_xmlrpc_client_hook(client, logger)
+        return unless XMLRPC_DOMAINS.map { |domain| client.http.address.include?(domain) }.any?
+
+        auth = Novell.oscrc_credentials
+        client.user = auth[:user]
+        client.password = auth[:password]
+        logger.debug("#{self} : updated XMLRPC client with oscrc auth information")
+      rescue StandardError => e
+        logger.error e
       end
     end
   end

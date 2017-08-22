@@ -110,11 +110,11 @@ default: mysite
 Plugins are classes in the module Bicho::Plugins. They can implement hooks that are
 called at different points of execution.
 
-* default_site_url_hook
+* `default_site_url_hook`
 
   If no site url is provided the last one provided by a plugin will be used.
 
-* transform_site_url_hook
+* `transform_site_url_hook`
 
   This hook is called to modify the main site url (eg: http://bugzilla.suse.com).
   Use it when a plugin wants to provide an alternative url to a well-known bugzilla or
@@ -122,10 +122,14 @@ called at different points of execution.
   Plugin order is not defined so make sure your plugin focuses in one type of shortcut
   as another plugin can also change your returned value in their hooks.
 
-* transform_api_url_hook
+* `transform_api_url_hook`
 
   The API url is derived from the site url, however some bugzilla installations may have
   different servers or endpoints.
+
+* `transform_xmlrpc_client_hook`
+
+  This hook allows to modify the `XMLRPC::Client` object.
 
 ### Commands
 

@@ -131,6 +131,12 @@ module Bicho
 
       @client = XMLRPC::Client.new_from_uri(@api_url.to_s, nil, 900)
       @client.set_debug
+      @plugins.each do |pl_instance|
+        # Modify API url
+        if pl_instance.respond_to?(:transform_xmlrpc_client_hook)
+          pl_instance.transform_xmlrpc_client_hook(@client, logger)
+        end
+      end
 
       # User.login sets the credentials cookie for subsequent calls
       if @client.user && @client.password
