@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency('trollop', ['~> 2.1.2'])
   s.add_dependency('highline', ['~> 1.7.8'])
   s.add_dependency('nokogiri', ['~> 1.8.1'])
+  s.add_dependency('xmlrpc', ['~> 0.3.0'])
 
   s.add_development_dependency('rake')
   s.add_development_dependency('minitest')
