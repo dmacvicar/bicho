@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
   s.description = 'Library to access bugzilla'
   s.licenses    = ['MIT']
 
-  s.add_dependency('inifile', ['~> 0.4.1'])
-  s.add_dependency('trollop', ['>= 1.16'])
-  s.add_dependency('highline', ['~> 1.6.2'])
-  s.add_dependency('nokogiri')
+  s.add_dependency('inifile', ['~> 3.0.0'])
+  s.add_dependency('trollop', ['~> 2.1.2'])
+  s.add_dependency('highline', ['~> 1.7.8'])
+  s.add_dependency('nokogiri', ['~> 1.8.1'])
 
   s.add_development_dependency('rake')
   s.add_development_dependency('minitest')
