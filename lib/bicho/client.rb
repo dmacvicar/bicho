@@ -237,6 +237,21 @@ module Bicho
       fetch_named_query_url(url, 5)
     end
 
+    # normalize bug ids
+    # @param ids - array of bug numbers (Integer) or bug aliases (String)
+    # @returns Array of bug numbers (Integer)
+    #
+    # @private
+    def normalize_ids(ids)
+      ids.collect(&:to_s).map do |what|
+        if what =~ /^[0-9]+$/
+          next what.to_i
+        else
+          next expand_named_query(what)
+        end
+      end.flatten
+    end
+
     # Fetches a named query by its full url
     # @private
     # @returns [Array<String>] list of bugs
@@ -286,13 +301,7 @@ module Bicho
     # @return [Array<Bug>] a list of bugs
     def get_bugs(*ids)
       params = {}
-      params[:ids] = ids.collect(&:to_s).map do |what|
-        if what =~ /^[0-9]+$/
-          next what.to_i
-        else
-          next expand_named_query(what)
-        end
-      end.flatten
+      params[:ids] = normalize_ids ids
 
       bugs = []
       ret = @client.call('Bug.get', params)
@@ -306,13 +315,7 @@ module Bicho
     # @return [Array<History>] the history of the given bugs
     def get_history(*ids)
       params = {}
-      params[:ids] = ids.collect(&:to_s).map do |what|
-        if what =~ /^[0-9]+$/
-          next what.to_i
-        else
-          next expand_named_query(what)
-        end
-      end.flatten
+      params[:ids] = normalize_ids ids
 
       histories = []
       ret = @client.call('Bug.history', params)
@@ -329,13 +332,7 @@ module Bicho
     # Payload is lazy-loaded
     def get_attachments(*ids)
       params = {}
-      params[:ids] = ids.collect(&:to_s).map do |what|
-        if what =~ /^[0-9]+$/
-          next what.to_i
-        else
-          next expand_named_query(what)
-        end
-      end.flatten
+      params[:ids] = normalize_ids ids
 
       ret = @client.call('Bug.attachments',
                          params.merge(exclude_fields: ['data']))
