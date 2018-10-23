@@ -83,7 +83,7 @@ module Bicho
 
     # Shortcut, equivalent to
     #   :summary => "L3"
-    def L3
+    def L3 # rubocop:disable Naming/MethodName
       append_query('summary', 'L3')
       self
     end

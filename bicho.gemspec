@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'bicho/version'
 
 Gem::Specification.new do |s|
@@ -12,16 +11,16 @@ Gem::Specification.new do |s|
   s.description = 'Library to access bugzilla'
   s.licenses    = ['MIT']
 
-  s.add_dependency('inifile', ['~> 3.0.0'])
-  s.add_dependency('trollop', ['~> 2.1.2'])
   s.add_dependency('highline', ['~> 1.7.8'])
+  s.add_dependency('inifile', ['~> 3.0.0'])
   s.add_dependency('nokogiri', ['~> 1.8.1'])
+  s.add_dependency('trollop', ['~> 2.1.2'])
   s.add_dependency('xmlrpc', ['~> 0.3.0'])
 
-  s.add_development_dependency('rake')
   s.add_development_dependency('minitest')
   s.add_development_dependency('minitest-reporters')
-  s.add_development_dependency('rubocop', '= 0.41.2')
+  s.add_development_dependency('rake')
+  s.add_development_dependency('rubocop', '~> 0.59.0')
   s.add_development_dependency('vcr')
   s.add_development_dependency('webmock')
 
