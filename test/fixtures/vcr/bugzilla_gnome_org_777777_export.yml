@@ -1,0 +1,300 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.get</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>777777</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 11:53:52 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - Bugzilla_login_request_cookie=G3hZl9A9vP; path=/; secure; HttpOnly
+      Content-Length:
+      - '3085'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>faults</name><value><array><data
+        /></array></value></member><member><name>bugs</name><value><array><data><value><struct><member><name>priority</name><value><string>Normal</string></value></member><member><name>blocks</name><value><array><data
+        /></array></value></member><member><name>creator</name><value><string>kekun.plazas@laposte.net</string></value></member><member><name>last_change_time</name><value><dateTime.iso8601>20170222T20:48:43</dateTime.iso8601></value></member><member><name>is_cc_accessible</name><value><boolean>1</boolean></value></member><member><name>keywords</name><value><array><data
+        /></array></value></member><member><name>cc</name><value><array><data><value><string>kekun.plazas@laposte.net</string></value><value><string>mcatanzaro@gnome.org</string></value></data></array></value></member><member><name>url</name><value><string
+        /></value></member><member><name>assigned_to</name><value><string>gnome-games-maint@gnome.bugs</string></value></member><member><name>groups</name><value><array><data
+        /></array></value></member><member><name>see_also</name><value><array><data
+        /></array></value></member><member><name>id</name><value><int>777777</int></value></member><member><name>creation_time</name><value><dateTime.iso8601>20170126T08:46:00</dateTime.iso8601></value></member><member><name>whiteboard</name><value><string
+        /></value></member><member><name>qa_contact</name><value><string>gnome-games-maint@gnome.bugs</string></value></member><member><name>depends_on</name><value><array><data
+        /></array></value></member><member><name>resolution</name><value><string>FIXED</string></value></member><member><name>classification</name><value><string>Core</string></value></member><member><name>op_sys</name><value><string>Linux</string></value></member><member><name>status</name><value><string>RESOLVED</string></value></member><member><name>cf_gnome_target</name><value><string>---</string></value></member><member><name>cf_gnome_version</name><value><string>---</string></value></member><member><name>summary</name><value><string>Game
+        Boy games not detected</string></value></member><member><name>is_open</name><value><boolean>0</boolean></value></member><member><name>platform</name><value><string>Other</string></value></member><member><name>severity</name><value><string>normal</string></value></member><member><name>flags</name><value><array><data
+        /></array></value></member><member><name>version</name><value><string>unspecified</string></value></member><member><name>component</name><value><string>general</string></value></member><member><name>is_creator_accessible</name><value><boolean>1</boolean></value></member><member><name>product</name><value><string>gnome-games</string></value></member><member><name>is_confirmed</name><value><boolean>1</boolean></value></member><member><name>target_milestone</name><value><string>---</string></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 11:53:54 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.history</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>777777</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=G3hZl9A9vP
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 11:53:53 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '4959'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>bugs</name><value><array><data><value><struct><member><name>history</name><value><array><data><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:03:10</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>kekun.plazas@laposte.net</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:05:34</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344292</int></value></member><member><name>removed</name><value><string>0</string></value></member><member><name>added</name><value><string>1</string></value></member><member><name>field_name</name><value><string>attachments.isobsolete</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:09</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>NEW</string></value></member><member><name>added</name><value><string>RESOLVED</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>FIXED</string></value></member><member><name>field_name</name><value><string>resolution</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:13</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344293</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:16</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344294</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T11:06:35</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344303</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170222T20:40:19</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>mcatanzaro@gnome.org</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>mcatanzaro@gnome.org</string></value></member></struct></value></data></array></value></member><member><name>id</name><value><int>777777</int></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 11:53:54 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.history</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>777777</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=G3hZl9A9vP
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 11:53:54 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '4959'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>bugs</name><value><array><data><value><struct><member><name>history</name><value><array><data><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:03:10</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>kekun.plazas@laposte.net</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:05:34</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344292</int></value></member><member><name>removed</name><value><string>0</string></value></member><member><name>added</name><value><string>1</string></value></member><member><name>field_name</name><value><string>attachments.isobsolete</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:09</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>NEW</string></value></member><member><name>added</name><value><string>RESOLVED</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>FIXED</string></value></member><member><name>field_name</name><value><string>resolution</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:13</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344293</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:16</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344294</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T11:06:35</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344303</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170222T20:40:19</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>mcatanzaro@gnome.org</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>mcatanzaro@gnome.org</string></value></member></struct></value></data></array></value></member><member><name>id</name><value><int>777777</int></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 11:53:55 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.history</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>777777</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=G3hZl9A9vP
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 11:53:54 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '4959'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>bugs</name><value><array><data><value><struct><member><name>history</name><value><array><data><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:03:10</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>kekun.plazas@laposte.net</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:05:34</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344292</int></value></member><member><name>removed</name><value><string>0</string></value></member><member><name>added</name><value><string>1</string></value></member><member><name>field_name</name><value><string>attachments.isobsolete</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:09</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>NEW</string></value></member><member><name>added</name><value><string>RESOLVED</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>FIXED</string></value></member><member><name>field_name</name><value><string>resolution</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:13</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344293</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:16</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344294</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T11:06:35</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344303</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170222T20:40:19</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>mcatanzaro@gnome.org</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>mcatanzaro@gnome.org</string></value></member></struct></value></data></array></value></member><member><name>id</name><value><int>777777</int></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 11:53:55 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.history</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>777777</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=G3hZl9A9vP
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 11:53:55 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '4959'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>bugs</name><value><array><data><value><struct><member><name>history</name><value><array><data><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:03:10</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>kekun.plazas@laposte.net</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:05:34</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344292</int></value></member><member><name>removed</name><value><string>0</string></value></member><member><name>added</name><value><string>1</string></value></member><member><name>field_name</name><value><string>attachments.isobsolete</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:09</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>NEW</string></value></member><member><name>added</name><value><string>RESOLVED</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>FIXED</string></value></member><member><name>field_name</name><value><string>resolution</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:13</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344293</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T09:06:16</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344294</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170126T11:06:35</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>attachment_id</name><value><int>344303</int></value></member><member><name>removed</name><value><string>none</string></value></member><member><name>added</name><value><string>committed</string></value></member><member><name>field_name</name><value><string>attachments.gnome_attachment_status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>kekun.plazas@laposte.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20170222T20:40:19</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>mcatanzaro@gnome.org</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>mcatanzaro@gnome.org</string></value></member></struct></value></data></array></value></member><member><name>id</name><value><int>777777</int></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 11:53:56 GMT
+recorded_with: VCR 4.0.0

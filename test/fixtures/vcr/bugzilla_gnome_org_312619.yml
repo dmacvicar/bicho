@@ -1,0 +1,185 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.get</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>312619</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '250'
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:53:59 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - Bugzilla_login_request_cookie=3NhILz4YdV; path=/; secure; HttpOnly
+      Content-Length:
+      - '3051'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>faults</name><value><array><data
+        /></array></value></member><member><name>bugs</name><value><array><data><value><struct><member><name>priority</name><value><string>Normal</string></value></member><member><name>blocks</name><value><array><data
+        /></array></value></member><member><name>creator</name><value><string>cbarton@metavr.com</string></value></member><member><name>last_change_time</name><value><dateTime.iso8601>20060411T19:22:41</dateTime.iso8601></value></member><member><name>is_cc_accessible</name><value><boolean>1</boolean></value></member><member><name>keywords</name><value><array><data
+        /></array></value></member><member><name>cc</name><value><array><data><value><string>ploum@ploum.net</string></value></data></array></value></member><member><name>url</name><value><string
+        /></value></member><member><name>assigned_to</name><value><string>epiphany-maint@gnome.bugs</string></value></member><member><name>groups</name><value><array><data
+        /></array></value></member><member><name>see_also</name><value><array><data
+        /></array></value></member><member><name>id</name><value><int>312619</int></value></member><member><name>creation_time</name><value><dateTime.iso8601>20050804T22:31:00</dateTime.iso8601></value></member><member><name>whiteboard</name><value><string
+        /></value></member><member><name>qa_contact</name><value><string>mpgritti@gmail.com</string></value></member><member><name>depends_on</name><value><array><data
+        /></array></value></member><member><name>resolution</name><value><string>INCOMPLETE</string></value></member><member><name>classification</name><value><string>Core</string></value></member><member><name>op_sys</name><value><string>Linux</string></value></member><member><name>status</name><value><string>RESOLVED</string></value></member><member><name>cf_gnome_target</name><value><string>---</string></value></member><member><name>cf_gnome_version</name><value><string>2.9/2.10</string></value></member><member><name>summary</name><value><string>no
+        input boxes display in epiphany after screem crash</string></value></member><member><name>is_open</name><value><boolean>0</boolean></value></member><member><name>platform</name><value><string>Other</string></value></member><member><name>severity</name><value><string>normal</string></value></member><member><name>flags</name><value><array><data
+        /></array></value></member><member><name>version</name><value><string>1.6.x</string></value></member><member><name>component</name><value><string>[obsolete]
+        Backend:Mozilla</string></value></member><member><name>is_creator_accessible</name><value><boolean>1</boolean></value></member><member><name>product</name><value><string>epiphany</string></value></member><member><name>is_confirmed</name><value><boolean>0</boolean></value></member><member><name>target_milestone</name><value><string>---</string></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:54:00 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.history</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>312619</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=3NhILz4YdV
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:54:00 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '2612'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>bugs</name><value><array><data><value><struct><member><name>history</name><value><array><data><value><struct><member><name>when</name><value><dateTime.iso8601>20050808T12:24:08</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>epiphany</string></value></member><member><name>added</name><value><string>no
+        input boxes display in epiphany after screem crash</string></value></member><member><name>field_name</name><value><string>summary</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>ploum@ploum.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20051231T21:56:36</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>UNCONFIRMED</string></value></member><member><name>added</name><value><string>NEEDINFO</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>chpe@gnome.org</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20060411T19:22:41</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>ploum@fritalk.com</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value><value><struct><member><name>removed</name><value><string>NEEDINFO</string></value></member><member><name>added</name><value><string>RESOLVED</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>INCOMPLETE</string></value></member><member><name>field_name</name><value><string>resolution</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>ploum@ploum.net</string></value></member></struct></value></data></array></value></member><member><name>id</name><value><int>312619</int></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:54:01 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.history</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>312619</i4></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '254'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=3NhILz4YdV
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:54:01 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '2612'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>bugs</name><value><array><data><value><struct><member><name>history</name><value><array><data><value><struct><member><name>when</name><value><dateTime.iso8601>20050808T12:24:08</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>epiphany</string></value></member><member><name>added</name><value><string>no
+        input boxes display in epiphany after screem crash</string></value></member><member><name>field_name</name><value><string>summary</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>ploum@ploum.net</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20051231T21:56:36</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string>UNCONFIRMED</string></value></member><member><name>added</name><value><string>NEEDINFO</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>chpe@gnome.org</string></value></member></struct></value><value><struct><member><name>when</name><value><dateTime.iso8601>20060411T19:22:41</dateTime.iso8601></value></member><member><name>changes</name><value><array><data><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>ploum@fritalk.com</string></value></member><member><name>field_name</name><value><string>cc</string></value></member></struct></value><value><struct><member><name>removed</name><value><string>NEEDINFO</string></value></member><member><name>added</name><value><string>RESOLVED</string></value></member><member><name>field_name</name><value><string>status</string></value></member></struct></value><value><struct><member><name>removed</name><value><string
+        /></value></member><member><name>added</name><value><string>INCOMPLETE</string></value></member><member><name>field_name</name><value><string>resolution</string></value></member></struct></value></data></array></value></member><member><name>who</name><value><string>ploum@ploum.net</string></value></member></struct></value></data></array></value></member><member><name>id</name><value><int>312619</int></value></member></struct></value></data></array></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:54:02 GMT
+recorded_with: VCR 4.0.0

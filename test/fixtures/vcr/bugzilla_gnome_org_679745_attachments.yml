@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.attachments</methodName><params><param><value><struct><member><name>ids</name><value><array><data><value><i4>679745</i4></value></data></array></value></member><member><name>exclude_fields</name><value><array><data><value><string>data</string></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '381'
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:50:50 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - Bugzilla_login_request_cookie=YUL53GJNuK; path=/; secure; HttpOnly
+      Content-Length:
+      - '1730'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>attachments</name><value><struct
+        /></value></member><member><name>bugs</name><value><struct><member><name>679745</name><value><array><data><value><struct><member><name>is_private</name><value><int>0</int></value></member><member><name>flags</name><value><array><data
+        /></array></value></member><member><name>creator</name><value><string>felipeborges@gnome.org</string></value></member><member><name>last_change_time</name><value><dateTime.iso8601>20160613T13:38:14</dateTime.iso8601></value></member><member><name>bug_id</name><value><int>679745</int></value></member><member><name>description</name><value><string>user-accounts:
+        use Password Login instead of Automatic Login</string></value></member><member><name>size</name><value><int>8559</int></value></member><member><name>attacher</name><value><string>felipeborges@gnome.org</string></value></member><member><name>content_type</name><value><string>text/plain</string></value></member><member><name>file_name</name><value><string>user-accounts-use-Password-Login-instead-of-Automa.patch</string></value></member><member><name>summary</name><value><string>user-accounts:
+        use Password Login instead of Automatic Login</string></value></member><member><name>id</name><value><int>329690</int></value></member><member><name>creation_time</name><value><dateTime.iso8601>20160613T12:34:00</dateTime.iso8601></value></member><member><name>is_patch</name><value><int>1</int></value></member><member><name>is_obsolete</name><value><int>0</int></value></member></struct></value></data></array></value></member></struct></value></member></struct></value></param></params></methodResponse>'
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:50:51 GMT
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bug.attachments</methodName><params><param><value><struct><member><name>attachment_ids</name><value><array><data><value><i4>329690</i4></value></data></array></value></member><member><name>include_fields</name><value><array><data><value><string>data</string></value></data></array></value></member></struct></value></param></params></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '392'
+      Connection:
+      - keep-alive
+      Cookie:
+      - Bugzilla_login_request_cookie=YUL53GJNuK
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:50:50 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '11813'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>attachments</name><value><struct><member><name>329690</name><value><struct><member><name>data</name><value><base64>RnJvbSAzYTYzYWNlZDAwZDEyN2ZjMmM1ZDAzMTFmOTU4YTYzZTAzMTg3YTMwIE1vbiBTZXAgMTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBGZWxpcGUgQm9yZ2VzIDxmZWxpcGVib3JnZXNAZ25vbWUub3JnPgpEYXRlOiBNb24sIDEzIEp1biAyMDE2IDEzOjU0OjI0ICswMjAwClN1YmplY3Q6IFtQQVRDSF0gdXNlci1hY2NvdW50czogdXNlIFBhc3N3b3JkIExvZ2luIGluc3RlYWQgb2YgQXV0b21hdGljIExvZ2luCgpwYXNzd29yZF9sb2dpbiA9PSAhYXV0b21hdGljX2xvZ2luCmh0dHBzOi8vd2lraS5nbm9tZS5vcmcvRGVzaWduL1N5c3RlbVNldHRpbmdzL1VzZXJBY2NvdW50cwoKaHR0cHM6Ly9idWd6aWxsYS5nbm9tZS5vcmcvc2hvd19idWcuY2dpP2lkPTc2NzA2NQoKaHR0cHM6Ly9idWd6aWxsYS5nbm9tZS5vcmcvc2hvd19idWcuY2dpP2lkPTY3OTc0NQotLS0KIHBhbmVscy91c2VyLWFjY291bnRzL2RhdGEvdXNlci1hY2NvdW50cy1kaWFsb2cudWkgfCAxNCArKysrLS0tLS0KIHBhbmVscy91c2VyLWFjY291bnRzL3VtLXVzZXItcGFuZWwuYyAgICAgICAgICAgICAgfCAzOCArKysrKysrKysrKy0tLS0tLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCAyNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9wYW5lbHMvdXNlci1hY2NvdW50cy9kYXRhL3VzZXItYWNjb3VudHMtZGlhbG9nLnVpIGIvcGFuZWxzL3VzZXItYWNjb3VudHMvZGF0YS91c2VyLWFjY291bnRzLWRpYWxvZy51aQppbmRleCBjOWYzNjIxLi4zODM1ODNhIDEwMDY0NAotLS0gYS9wYW5lbHMvdXNlci1hY2NvdW50cy9kYXRhL3VzZXItYWNjb3VudHMtZGlhbG9nLnVpCisrKyBiL3BhbmVscy91c2VyLWFjY291bnRzL2RhdGEvdXNlci1hY2NvdW50cy1kaWFsb2cudWkKQEAgLTI3MiwxMiArMjcyLDEyIEBACiAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvcGFja2luZz4KICAgICAgICAgICAgICAgICAgICAgICAgIDwvY2hpbGQ+CiAgICAgICAgICAgICAgICAgICAgICAgICA8Y2hpbGQ+Ci0gICAgICAgICAgICAgICAgICAgICAgICAgIDxvYmplY3QgY2xhc3M9Ikd0a0xhYmVsIiBpZD0iYXV0b2xvZ2luLWxhYmVsIj4KKyAgICAgICAgICAgICAgICAgICAgICAgICAgPG9iamVjdCBjbGFzcz0iR3RrTGFiZWwiIGlkPSJwYXNzd29yZC1sb2dpbi1sYWJlbCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHByb3BlcnR5IG5hbWU9InZpc2libGUiPlRydWU8L3Byb3BlcnR5PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJ4YWxpZ24iPjE8L3Byb3BlcnR5PgotICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJsYWJlbCIgdHJhbnNsYXRhYmxlPSJ5ZXMiPkFfdXRvbWF0aWMgTG9naW48L3Byb3BlcnR5PgorICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJsYWJlbCIgdHJhbnNsYXRhYmxlPSJ5ZXMiPlBhX3Nzd29yZCBMb2dpbjwvcHJvcGVydHk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHByb3BlcnR5IG5hbWU9InVzZV91bmRlcmxpbmUiPlRydWU8L3Byb3BlcnR5PgotICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJtbmVtb25pY193aWRnZXQiPmF1dG9sb2dpbi1zd2l0Y2g8L3Byb3BlcnR5PgorICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJtbmVtb25pY193aWRnZXQiPnBhc3N3b3JkLWxvZ2luLXN3aXRjaDwvcHJvcGVydHk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHN0eWxlPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGNsYXNzIG5hbWU9ImRpbS1sYWJlbCIvPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvc3R5bGU+CkBAIC0yOTAsMTEgKzI5MCwxMSBAQAogICAgICAgICAgICAgICAgICAgICAgICAgICA8L3BhY2tpbmc+CiAgICAgICAgICAgICAgICAgICAgICAgICA8L2NoaWxkPgogICAgICAgICAgICAgICAgICAgICAgICAgPGNoaWxkPgotICAgICAgICAgICAgICAgICAgICAgICAgICA8b2JqZWN0IGNsYXNzPSJHdGtCb3giIGlkPSJhdXRvbG9naW4tYm94Ij4KKyAgICAgICAgICAgICAgICAgICAgICAgICAgPG9iamVjdCBjbGFzcz0iR3RrQm94IiBpZD0icGFzc3dvcmQtbG9naW4tYm94Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cHJvcGVydHkgbmFtZT0idmlzaWJsZSI+VHJ1ZTwvcHJvcGVydHk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHByb3BlcnR5IG5hbWU9Im9yaWVudGF0aW9uIj5HVEtfT1JJRU5UQVRJT05fSE9SSVpPTlRBTDwvcHJvcGVydHk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGNoaWxkPgotICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPG9iamVjdCBjbGFzcz0iR3RrU3dpdGNoIiBpZD0iYXV0b2xvZ2luLXN3aXRjaCI+CisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8b2JqZWN0IGNsYXNzPSJHdGtTd2l0Y2giIGlkPSJwYXNzd29yZC1sb2dpbi1zd2l0Y2giPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cHJvcGVydHkgbmFtZT0idmlzaWJsZSI+VHJ1ZTwvcHJvcGVydHk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwcm9wZXJ0eSBuYW1lPSJ2YWxpZ24iPkdUS19BTElHTl9DRU5URVI8L3Byb3BlcnR5PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9vYmplY3Q+CkBAIC01MjAsNyArNTIwLDcgQEAKICAgICAgIDx3aWRnZXQgbmFtZT0ibGFuZ3VhZ2UtbGFiZWwiLz4KICAgICAgIDx3aWRnZXQgbmFtZT0icGFzc3dvcmQtbGFiZWwiLz4KICAgICAgIDx3aWRnZXQgbmFtZT0iYWNjb3VudC10eXBlLWxhYmVsIi8+Ci0gICAgICA8d2lkZ2V0IG5hbWU9ImF1dG9sb2dpbi1sYWJlbCIvPgorICAgICAgPHdpZGdldCBuYW1lPSJwYXNzd29yZC1sb2dpbi1sYWJlbCIvPgogICAgICAgPHdpZGdldCBuYW1lPSJsYXN0LWxvZ2luLWxhYmVsIi8+CiAgICAgPC93aWRnZXRzPgogICA8L29iamVjdD4KQEAgLTUzMiw3ICs1MzIsNyBAQAogICAgICAgPHdpZGdldCBuYW1lPSJhY2NvdW50LXBhc3N3b3JkLWJ1dHRvbiIvPgogICAgICAgPHdpZGdldCBuYW1lPSJhY2NvdW50LXR5cGUtYm94Ii8+CiAgICAgICA8d2lkZ2V0IG5hbWU9ImFjY291bnQtdHlwZS1zdGF0aWMiLz4KLSAgICAgIDx3aWRnZXQgbmFtZT0iYXV0b2xvZ2luLWJveCIvPgorICAgICAgPHdpZGdldCBuYW1lPSJwYXNzd29yZC1sb2dpbi1ib3giLz4KICAgICAgIDx3aWRnZXQgbmFtZT0ibGFzdC1sb2dpbi1ncmlkIi8+CiAgICAgPC93aWRnZXRzPgogICA8L29iamVjdD4KZGlmZiAtLWdpdCBhL3BhbmVscy91c2VyLWFjY291bnRzL3VtLXVzZXItcGFuZWwuYyBiL3BhbmVscy91c2VyLWFjY291bnRzL3VtLXVzZXItcGFuZWwuYwppbmRleCBiM2E0MGJmLi5mMWI5MzYxIDEwMDY0NAotLS0gYS9wYW5lbHMvdXNlci1hY2NvdW50cy91bS11c2VyLXBhbmVsLmMKKysrIGIvcGFuZWxzL3VzZXItYWNjb3VudHMvdW0tdXNlci1wYW5lbC5jCkBAIC03OTMsMTQgKzc5MywxNCBAQCBnZXRfcGFzc3dvcmRfbW9kZV90ZXh0IChBY3RVc2VyICp1c2VyKQogfQogCiBzdGF0aWMgdm9pZAotYXV0b2xvZ2luX2NoYW5nZWQgKEdPYmplY3QgICAgICAgICAgICAqb2JqZWN0LAotICAgICAgICAgICAgICAgICAgIEdQYXJhbVNwZWMgICAgICAgICAqcHNwZWMsCi0gICAgICAgICAgICAgICAgICAgQ2NVc2VyUGFuZWxQcml2YXRlICpkKQorcGFzc3dvcmRfbG9naW5fY2hhbmdlZCAoR09iamVjdCAgICAgICAgICAgICpvYmplY3QsCisgICAgICAgICAgICAgICAgICAgICAgICBHUGFyYW1TcGVjICAgICAgICAgKnBzcGVjLAorICAgICAgICAgICAgICAgICAgICAgICAgQ2NVc2VyUGFuZWxQcml2YXRlICpkKQogewogICAgICAgICBnYm9vbGVhbiBhY3RpdmU7CiAgICAgICAgIEFjdFVzZXIgKnVzZXI7CiAKLSAgICAgICAgYWN0aXZlID0gZ3RrX3N3aXRjaF9nZXRfYWN0aXZlIChHVEtfU1dJVENIIChvYmplY3QpKTsKKyAgICAgICAgYWN0aXZlID0gIWd0a19zd2l0Y2hfZ2V0X2FjdGl2ZSAoR1RLX1NXSVRDSCAob2JqZWN0KSk7CiAgICAgICAgIHVzZXIgPSBnZXRfc2VsZWN0ZWRfdXNlciAoZCk7CiAKICAgICAgICAgaWYgKGFjdGl2ZSAhPSBhY3RfdXNlcl9nZXRfYXV0b21hdGljX2xvZ2luICh1c2VyKSkgewpAQCAtOTA2LDEwICs5MDYsMTAgQEAgc2hvd191c2VyIChBY3RVc2VyICp1c2VyLCBDY1VzZXJQYW5lbFByaXZhdGUgKmQpCiAgICAgICAgIGVuYWJsZSA9IGFjdF91c2VyX2lzX2xvY2FsX2FjY291bnQgKHVzZXIpOwogICAgICAgICBndGtfd2lkZ2V0X3NldF9zZW5zaXRpdmUgKHdpZGdldCwgZW5hYmxlKTsKIAotICAgICAgICB3aWRnZXQgPSBnZXRfd2lkZ2V0IChkLCAiYXV0b2xvZ2luLXN3aXRjaCIpOwotICAgICAgICBnX3NpZ25hbF9oYW5kbGVyc19ibG9ja19ieV9mdW5jICh3aWRnZXQsIGF1dG9sb2dpbl9jaGFuZ2VkLCBkKTsKLSAgICAgICAgZ3RrX3N3aXRjaF9zZXRfYWN0aXZlIChHVEtfU1dJVENIICh3aWRnZXQpLCBhY3RfdXNlcl9nZXRfYXV0b21hdGljX2xvZ2luICh1c2VyKSk7Ci0gICAgICAgIGdfc2lnbmFsX2hhbmRsZXJzX3VuYmxvY2tfYnlfZnVuYyAod2lkZ2V0LCBhdXRvbG9naW5fY2hhbmdlZCwgZCk7CisgICAgICAgIHdpZGdldCA9IGdldF93aWRnZXQgKGQsICJwYXNzd29yZC1sb2dpbi1zd2l0Y2giKTsKKyAgICAgICAgZ19zaWduYWxfaGFuZGxlcnNfYmxvY2tfYnlfZnVuYyAod2lkZ2V0LCBwYXNzd29yZF9sb2dpbl9jaGFuZ2VkLCBkKTsKKyAgICAgICAgZ3RrX3N3aXRjaF9zZXRfYWN0aXZlIChHVEtfU1dJVENIICh3aWRnZXQpLCAhYWN0X3VzZXJfZ2V0X2F1dG9tYXRpY19sb2dpbiAodXNlcikpOworICAgICAgICBnX3NpZ25hbF9oYW5kbGVyc191bmJsb2NrX2J5X2Z1bmMgKHdpZGdldCwgcGFzc3dvcmRfbG9naW5fY2hhbmdlZCwgZCk7CiAgICAgICAgIGd0a193aWRnZXRfc2V0X3NlbnNpdGl2ZSAod2lkZ2V0LCBnZXRfYXV0b2xvZ2luX3Bvc3NpYmxlICh1c2VyKSk7CiAKICAgICAgICAgd2lkZ2V0ID0gZ2V0X3dpZGdldCAoZCwgImFjY291bnQtbGFuZ3VhZ2UtYnV0dG9uIik7CkBAIC05MzksOSArOTM5LDkgQEAgc2hvd191c2VyIChBY3RVc2VyICp1c2VyLCBDY1VzZXJQYW5lbFByaXZhdGUgKmQpCiAgICAgICAgIGd0a193aWRnZXRfc2V0X3Zpc2libGUgKGxhYmVsLCBzaG93KTsKICAgICAgICAgZ3RrX3dpZGdldF9zZXRfdmlzaWJsZSAod2lkZ2V0LCBzaG93KTsKIAotICAgICAgICAvKiBBdXRvbG9naW46IHNob3cgd2hlbiBsb2NhbCBhY2NvdW50ICovCi0gICAgICAgIHdpZGdldCA9IGdldF93aWRnZXQgKGQsICJhdXRvbG9naW4tYm94Iik7Ci0gICAgICAgIGxhYmVsID0gZ2V0X3dpZGdldCAoZCwgImF1dG9sb2dpbi1sYWJlbCIpOworICAgICAgICAvKiBQYXNzd29yZCBsb2dpbjogc2hvdyB3aGVuIGxvY2FsIGFjY291bnQgKi8KKyAgICAgICAgd2lkZ2V0ID0gZ2V0X3dpZGdldCAoZCwgInBhc3N3b3JkLWxvZ2luLWJveCIpOworICAgICAgICBsYWJlbCA9IGdldF93aWRnZXQgKGQsICJwYXNzd29yZC1sb2dpbi1sYWJlbCIpOwogICAgICAgICBzaG93ID0gYWN0X3VzZXJfaXNfbG9jYWxfYWNjb3VudCAodXNlcik7CiAgICAgICAgIGd0a193aWRnZXRfc2V0X3Zpc2libGUgKHdpZGdldCwgc2hvdyk7CiAgICAgICAgIGd0a193aWRnZXRfc2V0X3Zpc2libGUgKGxhYmVsLCBzaG93KTsKQEAgLTEzOTYsOCArMTM5Niw4IEBAIG9uX3Blcm1pc3Npb25fY2hhbmdlZCAoR1Blcm1pc3Npb24gKnBlcm1pc3Npb24sCiAgICAgICAgIGlmICghYWN0X3VzZXJfaXNfbG9jYWxfYWNjb3VudCAodXNlcikpIHsKICAgICAgICAgICAgICAgICBndGtfc3RhY2tfc2V0X3Zpc2libGVfY2hpbGRfbmFtZSAoR1RLX1NUQUNLIChnZXRfd2lkZ2V0IChkLCAiYWNjb3VudC10eXBlLXN0YWNrIikpLCAic3RhdGljIik7CiAgICAgICAgICAgICAgICAgcmVtb3ZlX3VubG9ja190b29sdGlwIChnZXRfd2lkZ2V0IChkLCAiYWNjb3VudC10eXBlLXN0YWNrIikpOwotICAgICAgICAgICAgICAgIGd0a193aWRnZXRfc2V0X3NlbnNpdGl2ZSAoR1RLX1dJREdFVCAoZ2V0X3dpZGdldCAoZCwgImF1dG9sb2dpbi1zd2l0Y2giKSksIEZBTFNFKTsKLSAgICAgICAgICAgICAgICByZW1vdmVfdW5sb2NrX3Rvb2x0aXAgKGdldF93aWRnZXQgKGQsICJhdXRvbG9naW4tc3dpdGNoIikpOworICAgICAgICAgICAgICAgIGd0a193aWRnZXRfc2V0X3NlbnNpdGl2ZSAoR1RLX1dJREdFVCAoZ2V0X3dpZGdldCAoZCwgInBhc3N3b3JkLWxvZ2luLXN3aXRjaCIpKSwgRkFMU0UpOworICAgICAgICAgICAgICAgIHJlbW92ZV91bmxvY2tfdG9vbHRpcCAoZ2V0X3dpZGdldCAoZCwgInBhc3N3b3JkLWxvZ2luLXN3aXRjaCIpKTsKIAogICAgICAgICB9IGVsc2UgaWYgKGlzX2F1dGhvcml6ZWQgJiYgYWN0X3VzZXJfaXNfbG9jYWxfYWNjb3VudCAodXNlcikpIHsKICAgICAgICAgICAgICAgICBpZiAod291bGRfZGVtb3RlX29ubHlfYWRtaW4gKHVzZXIpKSB7CkBAIC0xNDA3LDggKzE0MDcsOCBAQCBvbl9wZXJtaXNzaW9uX2NoYW5nZWQgKEdQZXJtaXNzaW9uICpwZXJtaXNzaW9uLAogICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICByZW1vdmVfdW5sb2NrX3Rvb2x0aXAgKGdldF93aWRnZXQgKGQsICJhY2NvdW50LXR5cGUtc3RhY2siKSk7CiAKLSAgICAgICAgICAgICAgICBndGtfd2lkZ2V0X3NldF9zZW5zaXRpdmUgKEdUS19XSURHRVQgKGdldF93aWRnZXQgKGQsICJhdXRvbG9naW4tc3dpdGNoIikpLCBnZXRfYXV0b2xvZ2luX3Bvc3NpYmxlICh1c2VyKSk7Ci0gICAgICAgICAgICAgICAgcmVtb3ZlX3VubG9ja190b29sdGlwIChnZXRfd2lkZ2V0IChkLCAiYXV0b2xvZ2luLXN3aXRjaCIpKTsKKyAgICAgICAgICAgICAgICBndGtfd2lkZ2V0X3NldF9zZW5zaXRpdmUgKEdUS19XSURHRVQgKGdldF93aWRnZXQgKGQsICJwYXNzd29yZC1sb2dpbi1zd2l0Y2giKSksIGdldF9hdXRvbG9naW5fcG9zc2libGUgKHVzZXIpKTsKKyAgICAgICAgICAgICAgICByZW1vdmVfdW5sb2NrX3Rvb2x0aXAgKGdldF93aWRnZXQgKGQsICJwYXNzd29yZC1sb2dpbi1zd2l0Y2giKSk7CiAgICAgICAgIH0KICAgICAgICAgZWxzZSB7CiAgICAgICAgICAgICAgICAgZ3RrX3N0YWNrX3NldF92aXNpYmxlX2NoaWxkX25hbWUgKEdUS19TVEFDSyAoZ2V0X3dpZGdldCAoZCwgImFjY291bnQtdHlwZS1zdGFjayIpKSwgInN0YXRpYyIpOwpAQCAtMTQxNyw4ICsxNDE3LDggQEAgb25fcGVybWlzc2lvbl9jaGFuZ2VkIChHUGVybWlzc2lvbiAqcGVybWlzc2lvbiwKICAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICAgICAgICAgYWRkX3VubG9ja190b29sdGlwIChnZXRfd2lkZ2V0IChkLCAiYWNjb3VudC10eXBlLXN0YWNrIikpOwogICAgICAgICAgICAgICAgIH0KLSAgICAgICAgICAgICAgICBndGtfd2lkZ2V0X3NldF9zZW5zaXRpdmUgKEdUS19XSURHRVQgKGdldF93aWRnZXQgKGQsICJhdXRvbG9naW4tc3dpdGNoIikpLCBGQUxTRSk7Ci0gICAgICAgICAgICAgICAgYWRkX3VubG9ja190b29sdGlwIChnZXRfd2lkZ2V0IChkLCAiYXV0b2xvZ2luLXN3aXRjaCIpKTsKKyAgICAgICAgICAgICAgICBndGtfd2lkZ2V0X3NldF9zZW5zaXRpdmUgKEdUS19XSURHRVQgKGdldF93aWRnZXQgKGQsICJwYXNzd29yZC1sb2dpbi1zd2l0Y2giKSksIEZBTFNFKTsKKyAgICAgICAgICAgICAgICBhZGRfdW5sb2NrX3Rvb2x0aXAgKGdldF93aWRnZXQgKGQsICJwYXNzd29yZC1sb2dpbi1zd2l0Y2giKSk7CiAgICAgICAgIH0KIAogICAgICAgICAvKiBUaGUgZnVsbCBuYW1lIGVudHJ5OiBpbnNlbnNpdGl2ZSBpZiByZW1vdGUgb3Igbm90IGF1dGhvcml6ZWQgYW5kIG5vdCBzZWxmICovCkBAIC0xNjQ5LDggKzE2NDksOCBAQCBzZXR1cF9tYWluX3dpbmRvdyAoQ2NVc2VyUGFuZWwgKnNlbGYpCiAgICAgICAgIGJ1dHRvbiA9IGdldF93aWRnZXQgKGQsICJhY2NvdW50LWxhbmd1YWdlLWJ1dHRvbiIpOwogICAgICAgICBnX3NpZ25hbF9jb25uZWN0IChidXR0b24sICJzdGFydC1lZGl0aW5nIiwgR19DQUxMQkFDSyAoY2hhbmdlX2xhbmd1YWdlKSwgZCk7CiAKLSAgICAgICAgYnV0dG9uID0gZ2V0X3dpZGdldCAoZCwgImF1dG9sb2dpbi1zd2l0Y2giKTsKLSAgICAgICAgZ19zaWduYWxfY29ubmVjdCAoYnV0dG9uLCAibm90aWZ5OjphY3RpdmUiLCBHX0NBTExCQUNLIChhdXRvbG9naW5fY2hhbmdlZCksIGQpOworICAgICAgICBidXR0b24gPSBnZXRfd2lkZ2V0IChkLCAicGFzc3dvcmQtbG9naW4tc3dpdGNoIik7CisgICAgICAgIGdfc2lnbmFsX2Nvbm5lY3QgKGJ1dHRvbiwgIm5vdGlmeTo6YWN0aXZlIiwgR19DQUxMQkFDSyAocGFzc3dvcmRfbG9naW5fY2hhbmdlZCksIGQpOwogCiAgICAgICAgIGJ1dHRvbiA9IGdldF93aWRnZXQgKGQsICJhY2NvdW50LWZpbmdlcnByaW50LWJ1dHRvbiIpOwogICAgICAgICBnX3NpZ25hbF9jb25uZWN0IChidXR0b24sICJzdGFydC1lZGl0aW5nIiwKLS0gCjIuNy40</base64></value></member></struct></value></member></struct></value></member><member><name>bugs</name><value><struct
+        /></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:50:52 GMT
+recorded_with: VCR 4.0.0

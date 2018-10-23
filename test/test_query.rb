@@ -14,10 +14,12 @@ class QueryTest < Minitest::Test
       end
     end
 
-    Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
+    VCR.use_cassette('bugzilla.gnome.org_search_vala_resolved_basic_types') do
+      Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
 
-    ret = Bicho::Bug.where.product('vala').status('resolved').component('Basic Types').each.to_a
-    assert ret.collect(&:id).include?(645_150)
+      ret = Bicho::Bug.where.product('vala').status('resolved').component('Basic Types').each.to_a
+      assert ret.collect(&:id).include?(645_150)
+    end
   end
 
   def test_query_addition_of_attributes

@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://bugzilla.opensuse.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bugzilla.version</methodName><params/></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '98'
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:54:58 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000;includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.11
+      Set-Cookie:
+      - Bugzilla_login_request_cookie=jTyWtaThES; path=/; HttpOnly
+      - TbBx5iTmnWSKRFA@=v18jFvAA@@6d3; Domain=.opensuse.org; Path=/
+      - ZNPCQ003-32343300=1ea19fc3; Path=/; Domain=.opensuse.org
+      X-Mag:
+      - A816300EE4BD0ACF;5faca923;2440571;usrLkup->0;usrBase->0;getPRBefFind->0;getPRBefFind->0;PRAfterFind->0;openbugzilla_root;publicURL->0;openbugzilla;RwDis;FF1Endp->0;SendSoapStart->0;SendSoapExit->2;EvalII->2;CHd;FP2->2;WS=1ea19fc3;FP4->21;
+      Via:
+      - 1.1 bugzilla.opensuse.org (Access Gateway-ag-A816300EE4BD0ACF-2440571)
+      Keep-Alive:
+      - timeout=2, max=100
+      Connection:
+      - Keep-Alive
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-encoding
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>version</name><value><string>4.4.12</string></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:54:58 GMT
+recorded_with: VCR 4.0.0

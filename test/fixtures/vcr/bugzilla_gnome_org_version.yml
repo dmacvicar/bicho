@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://bugzilla.gnome.org/xmlrpc.cgi
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" ?><methodCall><methodName>Bugzilla.version</methodName><params/></methodCall>
+
+'
+    headers:
+      User-Agent:
+      - XMLRPC::Client (Ruby 2.5.0)
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '98'
+      Connection:
+      - keep-alive
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 23 Oct 2018 10:54:56 GMT
+      Server:
+      - Apache/2.4.6 (Red Hat Enterprise Linux)
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Set-Cookie:
+      - Bugzilla_login_request_cookie=rGRBUqdGxW; path=/; secure; HttpOnly
+      Content-Length:
+      - '210'
+      Content-Type:
+      - text/xml
+      Soapserver:
+      - SOAP::Lite/Perl/1.1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Access-Control-Allow-Origin:
+      - https://bugzilla.gnome.org
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><methodResponse><params><param><value><struct><member><name>version</name><value><string>4.4.13</string></value></member></struct></value></param></params></methodResponse>
+    http_version: 
+  recorded_at: Tue, 23 Oct 2018 10:54:57 GMT
+recorded_with: VCR 4.0.0
