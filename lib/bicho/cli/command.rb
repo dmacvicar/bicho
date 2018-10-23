@@ -23,7 +23,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'trollop'
+require 'optimist'
 require 'highline'
 
 module Bicho
@@ -33,7 +33,7 @@ module Bicho
     #
     # In order to create a command, add a class under
     # Bicho::CLI::Commands. Then you need to:
-    # * Add options, using a Trollop syntax
+    # * Add options, using a Optimist syntax
     # * Implement do(global_opts, options, args)
     #
     # You can use t.say to talk to the terminal
@@ -63,9 +63,9 @@ module Bicho
         @t = HighLine.new
       end
 
-      # Gateway to Trollop
+      # Gateway to Optimist
       def self.opt(*args)
-        self.parser = Trollop::Parser.new unless parser
+        self.parser = Optimist::Parser.new unless parser
         parser.opt(*args)
       end
 
@@ -77,8 +77,8 @@ module Bicho
       # Called by the cli to get the options
       # with current ARGV
       def parse_options
-        self.class.parser = Trollop::Parser.new unless self.class.parser
-        Trollop.with_standard_exception_handling(self.class.parser) do
+        self.class.parser = Optimist::Parser.new unless self.class.parser
+        Optimist.with_standard_exception_handling(self.class.parser) do
           self.class.parser.parse ARGV
         end
       end

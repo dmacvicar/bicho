@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.add_dependency('highline', ['~> 2.0.0'])
   s.add_dependency('inifile', ['~> 3.0.0'])
   s.add_dependency('nokogiri', ['~> 1.8.5'])
-  s.add_dependency('trollop', ['~> 2.9.9'])
+  s.add_dependency('optimist', ['~> 3.0.0'])
   s.add_dependency('xmlrpc', ['~> 0.3.0'])
 
   s.add_development_dependency('minitest')

@@ -60,7 +60,7 @@ begin
   # symbols in BzConsole module
   SUB_COMMANDS = Bicho::CLI::Commands.constants.sort.map(&:to_s).map(&:downcase)
 
-  global_opts = Trollop.options do
+  global_opts = Optimist.options do
     banner <<-EOS
     Usage: #{File.basename(__FILE__)} [global options] <command> ...
 
@@ -82,7 +82,7 @@ EOS
         end
 
   if !cmd || !SUB_COMMANDS.include?(cmd)
-    Trollop.die "available subcommands: #{SUB_COMMANDS.join(' ')}"
+    Optimist.die "available subcommands: #{SUB_COMMANDS.join(' ')}"
   end
 
   # Create an instance for the command
