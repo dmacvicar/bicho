@@ -3,7 +3,7 @@
 * http://github.com/dmacvicar/bicho
 
 ![stable](https://img.shields.io/badge/stability-stable-green.svg)
-![maintained](https://img.shields.io/maintenance/yes/2017.svg)
+![maintained](https://img.shields.io/maintenance/yes/2018.svg)
 [![Build Status](https://travis-ci.org/dmacvicar/bicho.svg?branch=master)](https://travis-ci.org/dmacvicar/bicho)
 
 ## Introduction
