@@ -116,6 +116,9 @@ module Bicho
 
       # Don't modify the original url
       @site_url = site_url.is_a?(URI) ? site_url.clone : URI.parse(site_url)
+      unless @site_url.host
+        raise "Malformed site url, can't detect host component"
+      end
 
       api_url = @site_url.clone
       api_url.path = '/xmlrpc.cgi'
