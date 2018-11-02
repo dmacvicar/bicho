@@ -207,6 +207,23 @@ module Bicho
       ret['id']
     end
 
+    # Update a bug
+    #
+    # @param id - bug number (Integer) or alias (String) of bug to be updated
+    # @param **kwargs - keyword-args containing optional/defaulted params
+    #
+    # @returns id of updated bug
+    #
+    def update_bug(id, **kwargs)
+      params = {}
+      params = params.merge(kwargs)
+      params[:ids] = normalize_ids [id]
+      ret = @client.call('Bug.update', params)
+      logger.info "Bug.update returned #{ret.inspect}"
+      handle_faults(ret)
+      ret['bugs'][0]['id'] rescue nil
+    end
+
     # Search for a bug
     #
     # +query+ has to be either a +Query+ object or
