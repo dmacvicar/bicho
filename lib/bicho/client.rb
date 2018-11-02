@@ -221,7 +221,12 @@ module Bicho
       ret = @client.call('Bug.update', params)
       logger.info "Bug.update returned #{ret.inspect}"
       handle_faults(ret)
-      ret['bugs'][0]['id'] rescue nil
+      begin
+        return ret['bugs'][0]['id']
+      rescue StandardError
+        # fallthru
+      end
+      nil
     end
 
     # Search for a bug
