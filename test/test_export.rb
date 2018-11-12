@@ -14,4 +14,17 @@ class ExportTest < Minitest::Test
       )
     end
   end
+
+  def test_to_prometheus
+    VCR.use_cassette('bugzilla.gnome.org_search_prometheus_export') do
+      Bicho.client = Bicho::Client.new('https://bugzilla.gnome.org')
+      query = Bicho::Query.new.product('vala').product('gnome-terminal').open
+      export = Bicho::Export.to_prometheus_push_gateway(query)
+      File.write('/tmp/fixture', export)
+      assert_equal(
+        File.read(fixture('bugzilla_gnome_org_search_prometheus_export.txt')),
+        export
+      )
+    end
+  end
 end

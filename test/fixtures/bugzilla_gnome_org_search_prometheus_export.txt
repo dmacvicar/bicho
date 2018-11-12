@@ -1,0 +1,6 @@
+# TYPE bugs_counter gauge
+bugs_total{product="gnome-terminal",status="NEW"} 192
+bugs_total{product="gnome-terminal",status="ASSIGNED"} 2
+bugs_total{product="gnome-terminal",status="REOPENED"} 7
+bugs_total{product="vala",status="NEW"} 1
+

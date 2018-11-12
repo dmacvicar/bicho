@@ -37,10 +37,12 @@ module Bicho::CLI::Commands
       Bicho::SEARCH_FIELDS.each do |field|
         opt field[0], field[2], type: field[1], multi: field[3]
       end
+      opt :format, 'Output format (json, prometheus)', type: :string
     end
 
     def do(global_opts, opts, _args)
       server = ::Bicho::Client.new(global_opts[:bugzilla])
+      Bicho.client = server
       # for most parameter we accept arrays, and also multi mode
       # this means parameters come in arrays of arrays
       query = ::Bicho::Query.new
@@ -53,8 +55,13 @@ module Bicho::CLI::Commands
         end
       end
 
-      server.search_bugs(query).each do |bug|
-        t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
+      case opts[:format]
+      when 'prometheus'
+        STDOUT.puts Bicho::Export.to_prometheus_push_gateway(query)
+      else
+        server.search_bugs(query).each do |bug|
+          t.say("#{t.color(bug.id.to_s, :headline)} #{bug.summary}")
+        end
       end
       0
     end
