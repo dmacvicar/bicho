@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Copyright (c) 2011 SUSE LINUX Products GmbH
 # =>
@@ -37,7 +39,7 @@ module Bicho
     # your oscrc.
     #
     class Novell
-      OSCRC_CREDENTIALS = 'https://api.opensuse.org'.freeze unless defined? OSCRC_CREDENTIALS
+      OSCRC_CREDENTIALS = 'https://api.opensuse.org' unless defined? OSCRC_CREDENTIALS
       DEFAULT_OSCRC_PATH = File.join(ENV['HOME'], '.oscrc') unless defined? DEFAULT_OSCRC_PATH
       DOMAINS = ['bugzilla.novell.com', 'bugzilla.suse.com'].freeze
       XMLRPC_DOMAINS = ['apibugzilla.novell.com', 'apibugzilla.suse.com'].freeze

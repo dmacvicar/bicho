@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bicho
   module Plugins
     # This plugin allows to specify shortcuts for bugzilla urls

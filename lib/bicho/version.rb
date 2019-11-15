@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bicho
-  VERSION = '0.0.17'.freeze
+  VERSION = '0.0.17'
 end

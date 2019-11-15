@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bicho
   # Utility methods for reporting on bugs
   module Reports

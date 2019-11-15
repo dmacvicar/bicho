@@ -5,3 +5,6 @@ Style/AsciiComments:
 
 Metrics/ClassLength:
   Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.3

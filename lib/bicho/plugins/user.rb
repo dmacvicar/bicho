@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 module Bicho
@@ -32,7 +34,7 @@ module Bicho
       end
 
       def transform_site_url_hook(url, logger)
-        if @config['aliases'] && @config['aliases'].key?(url.to_s)
+        if @config['aliases']&.key?(url.to_s)
           ret = @config['aliases'][url.to_s]
           logger.debug "Transformed '#{url}' to '#{ret}'"
           ret
