@@ -19,9 +19,11 @@ Main use case is report generation, therefore only the following
 features are implemented right now:
 
 * get bugs
-* search bugs
+* search bugs (create queries)
 
 Plugins can be written to deal with specific bugzilla installations.
+
+Additionally, some utilities are provided, like exporting the total number of bugs of a query to the [Prometheus push gateway](https://prometheus.io/docs/practices/pushing/) format.
 
 ## Example (API)
 
