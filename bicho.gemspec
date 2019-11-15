@@ -1,6 +1,7 @@
 $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'bicho/version'
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |s|
   s.name        = 'bicho'
   s.version     = Bicho::VERSION
@@ -21,9 +22,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency('minitest-reporters')
   s.add_development_dependency('rake')
   s.add_development_dependency('rubocop', '~> 0.59.0')
+  s.add_development_dependency('solargraph')
   s.add_development_dependency('vcr')
   s.add_development_dependency('webmock')
-  s.add_development_dependency('solargraph')
 
   s.rubyforge_project = 'bicho'
 
@@ -33,3 +34,4 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.3'
 end
+# rubocop:enable Metrics/BlockLength

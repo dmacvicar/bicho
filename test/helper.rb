@@ -1,5 +1,5 @@
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
-require "bundler/setup"
+require 'bundler/setup'
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/mock'
