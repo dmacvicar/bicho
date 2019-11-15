@@ -14,7 +14,7 @@ class HistoryTest < Minitest::Test
       assert !history.empty?
 
       history.each do |c|
-        assert c.timestamp.to_time.to_i > 0
+        assert c.timestamp.to_time.to_i.positive?
       end
     end
   end
