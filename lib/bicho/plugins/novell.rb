@@ -77,7 +77,7 @@ module Bicho
       end
 
       def transform_api_url_hook(url, logger)
-        return url unless DOMAINS.map { |domain| url.host.include?(domain) }.any?
+        return url unless DOMAINS.map { |domain| url.host&.include?(domain) }.any?
 
         begin
           url = url.clone
