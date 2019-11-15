@@ -1,6 +1,23 @@
-# TYPE bugs_counter gauge
-bugs_total{product="gnome-terminal",status="NEW"} 192
-bugs_total{product="gnome-terminal",status="ASSIGNED"} 2
-bugs_total{product="gnome-terminal",status="REOPENED"} 7
-bugs_total{product="vala",status="NEW"} 1
+# TYPE bugs_total gauge
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="enhancement",resolution="",component="general"} 89
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="enhancement",resolution="",component="Keybindings"} 7
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="normal",resolution="",component="general"} 43
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="enhancement",resolution="",component="Profiles"} 13
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="normal",resolution="",component="Keybindings"} 5
+bugs_total{product="gnome-terminal",status="ASSIGNED",priority="Normal",severity="enhancement",resolution="",component="docs"} 1
+bugs_total{product="gnome-terminal",status="REOPENED",priority="Normal",severity="enhancement",resolution="",component="general"} 1
+bugs_total{product="gnome-terminal",status="REOPENED",priority="Normal",severity="minor",resolution="",component="general"} 1
+bugs_total{product="gnome-terminal",status="NEW",priority="High",severity="major",resolution="",component="general"} 1
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="normal",resolution="",component="Profiles"} 8
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="minor",resolution="",component="general"} 9
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="major",resolution="",component="general"} 4
+bugs_total{product="gnome-terminal",status="REOPENED",priority="Normal",severity="normal",resolution="",component="general"} 3
+bugs_total{product="gnome-terminal",status="NEW",priority="Low",severity="normal",resolution="",component="docs"} 1
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="critical",resolution="",component="general"} 1
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="enhancement",resolution="",component="docs"} 1
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="minor",resolution="",component="Profiles"} 3
+bugs_total{product="gnome-terminal",status="REOPENED",priority="Normal",severity="normal",resolution="",component="Profiles"} 1
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="minor",resolution="",component="Keybindings"} 2
+bugs_total{product="gnome-terminal",status="NEW",priority="Normal",severity="normal",resolution="",component="docs"} 2
+bugs_total{product="vala",status="NEW",priority="Normal",severity="normal",resolution="",component="general"} 1
 
