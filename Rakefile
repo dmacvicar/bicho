@@ -7,7 +7,7 @@ extra_docs = ['README*', 'TODO*', 'CHANGELOG*']
 
 task default: [:test]
 Rake::TestTask.new do |t|
-  t.pattern = "test/test_*.rb"
+  t.pattern = 'test/test_*.rb'
   t.verbose = true if ENV['DEBUG']
 end
 
