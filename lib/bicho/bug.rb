@@ -85,6 +85,16 @@ module Bicho
       end
     end
 
+    # reopen a closed bug
+    # @param a String comment to add
+    # @param @optional a Boolean indicator if the new comment should be private (defaults to 'false')
+    #
+    # @returns id of re-opened bug
+    #
+    def reopen!(comment, is_private = false)
+      @client.update_bug(id, status: 'REOPENED', comment: { body: comment.to_s, is_private: is_private.to_b })
+    end
+
     # URL where the bug can be viewed
     # Example: http://bugs.foo.com/2345
     def url
