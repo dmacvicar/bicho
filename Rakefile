@@ -6,9 +6,8 @@ require 'rake/testtask'
 extra_docs = ['README*', 'TODO*', 'CHANGELOG*']
 
 task default: [:test]
-
 Rake::TestTask.new do |t|
-  t.test_files = Dir.glob(File.join(Dir.pwd, '/test/test_*.rb'))
+  t.pattern = "test/test_*.rb"
   t.verbose = true if ENV['DEBUG']
 end
 
